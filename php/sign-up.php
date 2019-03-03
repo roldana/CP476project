@@ -5,7 +5,7 @@
 <div class="content-container">
 
     <div class="login-form-wrap">
-        <form id="sign-up-form" method="POST" action="group-list.php">
+        <form id="sign-up-form" method="POST" action="account.php">
             <span class="form-title">
 				Sign Up
 			</span>
