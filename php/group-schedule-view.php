@@ -1,6 +1,8 @@
 <?php include("../include/header.php"); ?>
 
-<div class="main-body">
+<div class="content-container">
+    <div class="content-wrap">
+
     <div class="group-row">
         Group Name
         <div class="group-row-user-box">
@@ -547,6 +549,7 @@
             Submit Times
         </button>
     </div>
+</div>
 
 </div>
 
