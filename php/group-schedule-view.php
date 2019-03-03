@@ -20,21 +20,21 @@
     <div class="viewButtonBox">
 
         <div class="viewButton">
-            <button class="login-submit">
+            <button class="btn btn-primary btn-lg">
                 Week View
             </button>
         </div>
 
         <div class="viewButton">
-            <button class="login-submit">
+            <button class="btn btn-primary btn-lg">
                 Month View
             </button>
         </div>
 
         <div class="viewButton">
-            <button class="login-submit">
+            <a class="btn btn-primary btn-lg" href="calendar-view.php">
                 Google Calendar
-            </button>
+            </a>
         </div>
     </div>
 
@@ -543,7 +543,7 @@
 
 
     <div class="submit-button-box">
-        <button class="login-submit">
+        <button class="btn btn-outline-success">
             Submit Times
         </button>
     </div>
@@ -567,7 +567,7 @@
     <input type="text" class="comment-input" id="userComment" size="70">
 
     <div class="submit-button-box">
-        <button class="login-submit">
+        <button class="btn btn-outline-success">
             Submit Comment
         </button>
     </div>
