@@ -1,8 +1,6 @@
 <?php include("../include/header.php"); ?>
 
-<div class="content-container">
-    <div class="content-wrap">
-
+<div class="main-body">
     <div class="group-row">
         Group Name
         <div class="group-row-user-box">
@@ -549,8 +547,31 @@
             Submit Times
         </button>
     </div>
-</div>
 
 </div>
+
+<div class="comment-box">
+    <b>Comments</b>
+</div>
+
+<div class="comment-box">
+    <b>Username2:</b> Let's rule out thursday and friday.
+</div>
+
+<div class="comment-box">
+    <b>Username3:</b> The due date has been extended!
+</div>
+
+<div class="comment-box">
+    <b>Username1:</b><br>
+    <input type="text" class="comment-input" id="userComment" size="70">
+
+    <div class="submit-button-box">
+        <button class="login-submit">
+            Submit Comment
+        </button>
+    </div>
+</div>
+<br>
 
 <?php include("../include/footer.php"); ?>

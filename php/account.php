@@ -14,7 +14,36 @@
         <h2>Affiliation</h2>
         <p>[AFFILIATION NAME]</p>
         <h2>Current Groups</h2>
-        <p>[LIST OF GROUPS JOINED]</p>
+        <ul class="list-group">
+                <li class="list-group-item">
+                    [Group Name] - [Class name]
+                    <div class="float-r">
+                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                        <button class="btn btn-primary" type="submit">Exit</button>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    [Group Name] - [Class name]
+                    <div class="float-r">
+                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                        <button class="btn btn-primary" type="submit">Exit</button>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    [Group Name] - [Class name]
+                    <div class="float-r">
+                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                        <button class="btn btn-primary" type="submit">Exit</button>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    [Group Name] - [Class name]
+                    <div class="float-r">
+                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                        <button class="btn btn-primary" type="submit">Exit</button>
+                    </div>
+                </li>
+            </ul>
     </div>
 </div>
 <?php
