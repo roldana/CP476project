@@ -42,9 +42,9 @@
             </li>
             <a class="nav-link nav-link" href="info.php">About Calendar</a>
             <a class="nav-link nav-link" href="#">Other</a>  
-            <form class="navbar-form" action="group-list.php">
+            <form class="navbar-form form-inline" action="group-list.php">
               <div class="form-group float-l">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control mr-sm-2" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-outline-success">Submit</button>
             </form>
