@@ -24,7 +24,7 @@
 <body>
 	
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a href="#"class="navbar-brand">Calendar Thing</a>
+        <a href="info.php"class="navbar-brand">Calendar Thing</a>
         
         <div class="navbar-nav ml-auto">    
             <?php if (!(basename($_SERVER['PHP_SELF']) == "index.php")) {?>
@@ -34,15 +34,14 @@
                     Account
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">View Groups</a>
-                    <a class="dropdown-item" href="#">Join Groups</a>
-                    <a class="dropdown-item" href="#">My Account</a>
+                    <a class="dropdown-item" href="account.php">My Account</a>
+                    <a class="dropdown-item" href="group-list.php">Join Groups</a>
                 </div>
             </li>
-            <a class="nav-link nav-link" href="#">About Calendar</a>
+            <a class="nav-link nav-link" href="info.php">About Calendar</a>
             <a class="nav-link nav-link" href="#">Other</a>                
         </div>
         <?php } else {?>
-            <a class="nav-link nav-link" href="#">About Calendar</a>
+            <a class="nav-link nav-link" href="php/info.php">About Calendar</a>
         <?php } ?>
     </nav>

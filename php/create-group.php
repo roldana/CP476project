@@ -8,7 +8,7 @@
                 Create a group
             </span>
 
-            <form class="form50" method="POST" action="groupList.php">
+            <form class="form50" method="POST" action="group-list.php">
 
                 <div class="wrap-input">
                     <input class="input-box" type="text" name="group-name" id="group-name" placeholder="Enter a Group Name">

@@ -10,7 +10,7 @@
         
         <div class="group-list inner-content-wrap">
             <div class="upper-content-wrap">
-                <button type="button" class="btn btn-primary btn-lg">Create new group</button>
+                <a class="btn btn-primary btn-lg" href="create-group.php" role="button">Create new group</a>
                 <form class="form-inline float-r">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search for a group" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
