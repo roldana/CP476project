@@ -11,8 +11,8 @@
         <p>[USERNAME]</p>
         <h2>Email</h2>
         <p>[EMAIL ADDRESS]</p>
-        <h2>School</h2>
-        <p>[SCHOOL NAME]</p>
+        <h2>Affiliation</h2>
+        <p>[AFFILIATION NAME]</p>
         <h2>Current Groups</h2>
         <p>[LIST OF GROUPS JOINED]</p>
     </div>

@@ -16,6 +16,10 @@
             <div class="wrap-input">
                 <input class="input-box" type="text" name="email" placeholder="Email">
             </div>
+            
+            <div class="wrap-input">
+                <input class="input-box" type="text" name="affiliation" placeholder="Affiliation (School/Workplace)">
+            </div>
 
             <div class="wrap-input" >
                 <input class="input-box" type="password" name="pass1" placeholder="Password">
