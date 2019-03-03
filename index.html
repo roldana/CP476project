@@ -8,15 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 <!--===============================================================================================-->
 </head>
 <body>
 	
-
-	<div class="limiter">
 		<!-- NAV -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="#">Navbar</a>
@@ -33,33 +30,30 @@
 			</div>
 			</nav>
 			<!--  -->
-		<div class="container-login100">
+		<div class="content-container">      
+
 			<div class="login-form-wrap">
-				<form class="login100-form validate-form flex-sb flex-w">
-					<span class="login100-form-title p-b-51">
-						Login
+				<form>
+					<span class="form-title">
+						Login to Calendar
 					</span>
 
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100"></span>
+					<div class="wrap-input">
+						<input class="input-box" type="text" name="username" placeholder="Username">
 					</div>
 					
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
+					<div class="wrap-input">
+						<input class="input-box" type="password" name="pass" placeholder="Password">
 					</div>
 					
-					<div class="flex-sb-m w-full p-t-3 p-b-24">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
+					<div class="wrap-checkbox">
+						<div >
+							<input id="ckb1" type="checkbox" name="remember-me">
+							<label for="ckb1">
 								Remember me
 							</label>
 						</div>
-
 						<div>
 							<a href="#" class="txt1">
 								Forgot?
@@ -67,18 +61,18 @@
 						</div>
 					</div>
 
-					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">
+					<div class="container-login-submit">
+						<button class="login-submit">
 							Login
 						</button>
 					</div>
-					<div class="flex-sb-m w-full m-t-17">
-					<p>Don't have an account? </p><a href="sign-up.html" class="txt1">Sign Up</a>
-				</div>
+                    
+					<div class="wrap-checkbox">
+                        <p>Don't have an account? </p><a href="sign-up.html" class="txt1">Sign Up</a>
+                    </div>
 				</form>
-			</div>
-		</div>
-	</div>
+			</div>   
+        </div>
 		
 </body>
 </html>
