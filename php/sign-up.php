@@ -5,7 +5,7 @@
 <div class="content-container">
 
     <div class="login-form-wrap">
-        <form method="POST" action="group-list.php">
+        <form id="sign-up-form" method="POST" action="group-list.php">
             <span class="form-title">
 				Sign Up
 			</span>
@@ -22,16 +22,16 @@
             </div>
 
             <div class="wrap-input" >
-                <input class="input-box" type="password" name="pass1" placeholder="Password">
+                <input class="input-box" type="password" id="pass1" name="pass1" placeholder="Password">
             </div>
 
             <div class="wrap-input">
-                <input class="input-box" type="password" name="pass2" placeholder="Repeat Password">
+                <input class="input-box" type="password" id="pass2" name="pass2" placeholder="Repeat Password">
             </div>
             <div class="wrap-checkbox">
                 <div >
-                    <input id="ckb1" type="checkbox" name="agree">
-                    <label for="ckb1">
+                    <input id="agree" type="checkbox" name="agree">
+                    <label for="agree">
                         I agree to the <a href="#" class="txt1">terms and conditions</a>
                     </label>
                 </div>
@@ -45,6 +45,8 @@
         </form>
     </div>
 </div>
+
+    <script src="../js/sign-up.js"></script>
 
 <?php
     include("../include/footer.php");
