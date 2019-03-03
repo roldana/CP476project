@@ -1,8 +1,10 @@
 <?php include("../include/header.php"); ?>
+<div class="content-container">
 
-<div class="main-body">
+<div class="content-wrap">
     <div class="group-row">
-        Group Name
+        <h1>Group Name</h1>
+        
         <div class="group-row-user-box">
             Username1 (you)
             <div class="group-row-user-box-colour cyan"></div>
@@ -550,19 +552,19 @@
 
 </div>
 
-<div class="comment-box">
+<div class="comment-box content-wrap">
     <b>Comments</b>
 </div>
 
-<div class="comment-box">
+<div class="comment-box content-wrap">
     <b>Username2:</b> Let's rule out thursday and friday.
 </div>
 
-<div class="comment-box">
+<div class="comment-box content-wrap">
     <b>Username3:</b> The due date has been extended!
 </div>
 
-<div class="comment-box">
+<div class="comment-box content-wrap">
     <b>Username1:</b><br>
     <input type="text" class="comment-input" id="userComment" size="70">
 
@@ -571,6 +573,7 @@
             Submit Comment
         </button>
     </div>
+</div>
 </div>
 <br>
 
