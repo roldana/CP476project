@@ -36,6 +36,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="account.php">My Account</a>
                     <a class="dropdown-item" href="group-list.php">Join Groups</a>
+                    <a class="dropdown-item" href="message-centre.php">Message Centre</a>
                 </div>
             </li>
             <a class="nav-link nav-link" href="info.php">About Calendar</a>
