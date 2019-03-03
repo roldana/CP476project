@@ -262,3 +262,184 @@ button:hover {
 [type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
+
+.group-row {
+    font-family: Ubuntu-Bold;
+    font-size: 30px;
+    line-height: 2;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    background-color: #f0f0f0;
+    display: flex;
+}
+
+.viewButtonBox {
+    display: flex;
+    margin: 5px;
+}
+
+.viewButton {
+    margin-left: 10px;
+    width: 200px;
+}
+
+.calendar-container {
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 95%;
+    height: 575px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+}
+
+.calendar-day-row {
+    background-color: #f0f0f0;
+    font-size: 15px;
+    line-height: 2;
+
+    width: 100%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    background-color: #f0f0f0;
+    float: left;
+    display: flex;
+}
+
+.day-row {
+    background-color: #f0f0f0;
+    font-size: 15px;
+    line-height: 2;
+    text-align: center;
+    width: 15%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    float: left;
+}
+
+.time-row {
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    float: left;
+    display: flex;
+}
+
+.time-box {
+    font-size: 13px;
+    line-height: 2;
+    text-align: center;
+    width: 15%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    float: left;
+}
+
+.time-box-no-edit {
+    font-size: 13px;
+    line-height: 2;
+    text-align: center;
+    width: 15%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    float: left;
+}
+
+.group-row-user-box {
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    line-height: 3;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+
+    display: flex;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.group-row-user-box-colour {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-top: 13px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.submit-button-box {
+    width: 200px;
+    margin: 15px;
+}
+
+.comment-box{
+    line-height: 2.5;
+    padding-left: 15px;
+
+    background-color: #f5f5f5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+    margin: auto;
+    margin-top: 10px;
+    width: 90%
+}
+
+.comment-input {
+    width: 97%;
+}
+
+.cyan {
+    background: cyan;
+}
+
+.blue {
+    background: blue;
+}
+
+.purple {
+    background: purple;
+}
+
+.cyan-text {
+    font-weight: bold;
+    color: cyan;
+    border-style: solid;
+    border-width: 1px;
+    border-color: cyan;
+}
+.blue-text {
+    font-weight: bold;
+    color: blue;
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+}
+.purple-text {
+    font-weight: bold;
+    color: purple;
+    border-style: solid;
+    border-width: 1px;
+    border-color: purple;
+}
