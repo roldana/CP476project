@@ -35,7 +35,7 @@
 					</div>
 
 					<div class="container-login-submit">
-						<button class="login-submit">
+						<button class="login-btn btn btn-primary btn-lg">
 							Login
 						</button>
 					</div>
