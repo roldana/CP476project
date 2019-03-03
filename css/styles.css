@@ -443,3 +443,7 @@ button:hover {
     border-width: 1px;
     border-color: purple;
 }
+
+.error {
+    color: #ff0000;
+}

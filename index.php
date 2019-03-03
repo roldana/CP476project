@@ -7,7 +7,7 @@
 	<div class="content-container">      
 
 			<div class="login-form-wrap">
-				<form method="POST" action="php/group-list.php">
+				<form id="login-form" method="POST" action="php/group-list.php">
 					<span class="form-title">
 						Login to Calendar
 					</span>
@@ -48,6 +48,7 @@
             
 	</div>
 
+    <script src="js/login.js"></script>
     
 <?php
 
