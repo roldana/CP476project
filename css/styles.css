@@ -278,18 +278,18 @@ button:hover {
 
 .viewButtonBox {
     display: flex;
-    margin: 5px;
+    margin: 5px 0px;
 }
 
 .viewButton {
-    margin-left: 10px;
+    margin-left: 10px 0px;
     width: 200px;
 }
 
 .calendar-container {
     background-color: white;
     margin-top: 10px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
     width: 95%;
     height: 575px;
 
@@ -391,7 +391,7 @@ button:hover {
 
 .submit-button-box {
     width: 200px;
-    margin: 15px;
+    margin: 15px 0px;
 }
 
 .comment-box{
