@@ -16,31 +16,31 @@
         <h2>Current Groups</h2>
         <ul class="list-group">
                 <li class="list-group-item">
-                    [Group Name] - [Class name]
+                    [Group Name] - [Class name] - [Admin Status]
                     <div class="float-r">
                         <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Exit</button>
+                        <button class="btn btn-primary" type="submit">Delete Group</button>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    [Group Name] - [Class name] -[Admin Status]
+                    <div class="float-r">
+                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                        <button class="btn btn-primary" type="submit">Delete Group</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Group Name] - [Class name]
                     <div class="float-r">
                         <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Exit</button>
+                        <button class="btn btn-primary" type="submit">Exit Group</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Group Name] - [Class name]
                     <div class="float-r">
                         <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Exit</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Exit</button>
+                        <button class="btn btn-primary" type="submit">Exit Group</button>
                     </div>
                 </li>
             </ul>
