@@ -1,3 +1,10 @@
+<?php 
+$prefix="";
+if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
+    $prefix="php/"; 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,33 +30,35 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+    
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a href="info.php"class="navbar-brand">Calendar Thing</a>
         
         <div class="navbar-nav ml-auto">    
-            <?php if (!(basename($_SERVER['PHP_SELF']) == "index.php")) {?>
+            <?php if (!(isset($_SESSION))) {?>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     Account
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="account.php">My Account</a>
-                    <a class="dropdown-item" href="group-list.php">Join Groups</a>
-                    <a class="dropdown-item" href="message-centre.php">Message Centre</a>
+                    <a class="dropdown-item" href="<?php echo $prefix; ?>account.php">My Account</a>
+                    <a class="dropdown-item" href="<?php echo $prefix; ?>group-list.php">Join Groups</a>
+                    <a class="dropdown-item" href="<?php echo $prefix; ?>message-centre.php">Message Centre</a>
                 </div>
             </li>
-            <a class="nav-link nav-link" href="info.php">About Calendar</a>
-            <a class="nav-link nav-link" href="#">Other</a>  
-            <form class="navbar-form form-inline" action="group-list.php">
+            <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
+            <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>
+            <a class="nav-link" href="#">Logout</a>              
+            <form class="navbar-form form-inline" action="<?php echo $prefix; ?>group-list.php">
               <div class="form-group float-l">
-                <input type="text" class="form-control mr-sm-2" placeholder="Search">
+                <input type="text" class="form-control mr-sm-2" placeholder="Search for a group">
               </div>
-              <button type="submit" class="btn btn-outline-success">Submit</button>
+              <button type="submit" class="btn btn-outline-success">Search</button>
             </form>
         </div>
         <?php } else {?>
-            <a class="nav-link nav-link" href="php/info.php">About Calendar</a>
+            <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
+            <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>
         <?php } ?>
     </nav>
