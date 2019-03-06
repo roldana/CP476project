@@ -3,6 +3,10 @@ $prefix="";
 if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
     $prefix="php/"; 
 }
+
+session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +39,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
         <a href="info.php"class="navbar-brand">Calendar Thing</a>
         
         <div class="navbar-nav ml-auto">    
-            <?php if (!(isset($_SESSION))) {?>
+            <?php if ((isset($_SESSION['LoggedIn'])) && $_SESSION['LoggedIn'] == True) {?>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -49,7 +53,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
             </li>
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
             <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>
-            <a class="nav-link" href="#">Logout</a>              
+            <a class="nav-link" href="<?php echo $prefix; ?>logout.php">Logout</a>              
             <form class="navbar-form form-inline" action="<?php echo $prefix; ?>group-list.php">
               <div class="form-group float-l">
                 <input type="text" class="form-control mr-sm-2" placeholder="Search for a group">
@@ -60,5 +64,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
         <?php } else {?>
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
             <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>
+            <a class="nav-link" href="<?php if (!$prefix) { echo "../";} ?>index.php">Login</a>
+            <a class="nav-link" href="<?php echo $prefix; ?>sign-up.php">Sign Up</a>
         <?php } ?>
     </nav>

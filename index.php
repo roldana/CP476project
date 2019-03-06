@@ -7,7 +7,7 @@
 	<div class="content-container">      
 
 			<div class="login-form-wrap">
-				<form id="login-form" method="POST" action="php/account.php">
+				<form id="login-form" method="POST" action="php/login.php">
 					<span class="form-title">
 						Login to Calendar
 					</span>
