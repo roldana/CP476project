@@ -1,0 +1,18 @@
+DROP DATABASE IF EXISTS `CalendarDB`;
+CREATE DATABASE IF NOT EXISTS `CalendarDB`;
+USE `CalendarDB`;
+
+DROP TABLE IF EXISTS `Users`;
+
+CREATE TABLE `Users` (
+  `UserID` INTEGER NOT NULL AUTO_INCREMENT, 
+  `UserName` VARCHAR(50) UNIQUE NOT NULL,
+  `Email` VARCHAR(100) NOT NULL, 
+  `Password` VARCHAR(256) NOT NULL,
+  `Affiliation` VARCHAR(100), 
+  INDEX (`UserID`), 
+  INDEX (`UserName`), 
+  PRIMARY KEY (`UserName`)
+) ENGINE=innodb DEFAULT CHARSET=utf8;
+
+SET autocommit=1;
