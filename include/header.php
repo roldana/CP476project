@@ -12,7 +12,20 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+    <title><?php
+    if ((basename($_SERVER['PHP_SELF']) == "index.php")) {echo "Index";}
+    else if ((basename($_SERVER['PHP_SELF']) == "sign-up.php")) {echo "Sign Up";}
+    else if ((basename($_SERVER['PHP_SELF']) == "group-list.php")) {echo "Group List";}
+    else if ((basename($_SERVER['PHP_SELF']) == "group-schedule-view.php")) {echo "Group Schedule View";}
+    else if ((basename($_SERVER['PHP_SELF']) == "calendar-view.php")) {echo "Calendar View";}
+    else if ((basename($_SERVER['PHP_SELF']) == "create-group.php")) {echo "Create Group";}
+    else if ((basename($_SERVER['PHP_SELF']) == "message-centre.php")) {echo "Message Centre";}
+    else if ((basename($_SERVER['PHP_SELF']) == "account.php")) {echo "Account";}
+    else if ((basename($_SERVER['PHP_SELF']) == "contact.php")) {echo "Contact";}
+    else if ((basename($_SERVER['PHP_SELF']) == "info.php")) {echo "Info";}
+    else {echo "Page";}
+    ?>
+    </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
