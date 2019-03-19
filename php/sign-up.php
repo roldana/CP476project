@@ -46,7 +46,7 @@
     </div>
 </div>
 
-    <script src="../js/sign-up.js"></script>
+<script src="../js/sign-up.js"></script>
 
 <?php
     include("../include/footer.php");

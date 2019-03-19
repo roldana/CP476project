@@ -139,6 +139,19 @@ button:hover {
     padding: 0 20px 0 38px;
 }
 
+.input-area {
+    font-family: Ubuntu-Bold;
+    color: #403866;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    padding: 20px 20px 0 38px;
+    outline: none;
+	border: none;
+}
+
 .input-checkbox {
   display: none;
 }
