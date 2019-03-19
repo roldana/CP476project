@@ -2298,7 +2298,9 @@
 */
 .float-l {float: left;}
 .float-r {float: right;}
-
+.clear-l {clear: left;}
+.clear-r {clear: right;}
+.clear-b {clear: both;}
 
 /*[ Width & Height ]
 -----------------------------------------------------------

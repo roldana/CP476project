@@ -42,13 +42,15 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="css/util.css"> 
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/jquery/jquery.validate.min.js"></script>
     <?php } else { ?>
     <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/styles.css"> 
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/util.css">    
     <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="../vendor/jquery/jquery.validate.min.js"></script>
     <?php } ?>
