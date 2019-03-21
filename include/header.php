@@ -75,14 +75,14 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
                 </div>
             </li>
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
-            <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>
-            <a class="nav-link" href="<?php echo $prefix; ?>logout.php">Logout</a>              
+            <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>              
             <form class="navbar-form form-inline" action="<?php echo $prefix; ?>group-list.php">
               <div class="form-group float-l">
                 <input type="text" class="form-control mr-sm-2" placeholder="Search for a group">
               </div>
               <button type="submit" class="btn btn-outline-success">Search</button>
             </form>
+            <a class="nav-link btn btn-danger text-white m-1" href="<?php echo $prefix; ?>logout.php">Logout</a>
         </div>
         <?php } else {?>
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>

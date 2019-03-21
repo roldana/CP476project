@@ -74,42 +74,40 @@
                     </table>
                 </div>
             </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h2>Current Groups</h2>
-            <ul class="list-group m-b-10 m-t-10">
-                <li class="list-group-item m-b-10">
-                        [Group Name] - [Class name] - [Admin Status]
-                        <div class="float-r">
-                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                            <button class="btn btn-primary" type="submit">Delete Group</button>
-                        </div>
-                    </li>
-                    <li class="list-group-item m-b-10">
-                        [Group Name] - [Class name] -[Admin Status]
-                        <div class="float-r">
-                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                            <button class="btn btn-primary" type="submit">Delete Group</button>
-                        </div>
-                    </li>
-                    <li class="list-group-item m-b-10">
-                        [Group Name] - [Class name]
-                        <div class="float-r">
-                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                            <button class="btn btn-primary" type="submit">Exit Group</button>
-                        </div>
-                    </li>
-                    <li class="list-group-item m-b-10">
-                        [Group Name] - [Class name]
-                        <div class="float-r">
-                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                            <button class="btn btn-primary" type="submit">Exit Group</button>
-                        </div>
-                    </li>
-                </ul>
-             <a class="btn btn-primary" role="button" href="#">Change Account Information</a>
-         </div>
+            <div class="row">
+                <div class="mt-3 col-md-12 card card-inverse bg-light">
+                    <div class="card-header ">
+                        <h2>Your Current Groups</h2>
+                    </div>
+                    <div class="card-body">        
+                        <ul class="list-group m-b-10 m-t-10">
+                            <li class="list-group-item m-b-10">
+                                [Group Name] - [Class name] - [Admin Status]
+                                <div class="float-r">
+                                    <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                                    <button class="btn btn-primary" type="submit">Delete Group</button>
+                                </div>
+                            </li>
+                            <li class="list-group-item m-b-10">
+                                [Group Name] - [Class name] - [Admin Status]
+                                <div class="float-r">
+                                    <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                                    <button class="btn btn-primary" type="submit">Delete Group</button>
+                                </div>
+                            </li>
+                            <li class="list-group-item m-b-10">
+                                [Group Name] - [Class name]
+                                <div class="float-r">
+                                    <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                                    <button class="btn btn-primary" type="submit">Exit Group</button>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
 </div>
 <?php
