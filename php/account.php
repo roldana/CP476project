@@ -7,60 +7,109 @@
         <span class="form-title">
             My Account
         </span>
-        <h2>Username</h2>
-        <p>
-        <?php if (!isset($_SESSION['UserName'])) {
-            echo " - You're not logged in!";
-            }else {
-            echo  " - ".$_SESSION['UserName'];}?>
-        </p>
-        <h2>Email</h2>
-        <p>
-        <?php if (!isset($_SESSION['Email'])) {
-            echo " - You're not logged in!";
-            }else {
-            echo  " - ".$_SESSION['Email'];}?>
-        </p>
-        <h2>Affiliation</h2>
-        <p>
-        <?php if (!isset($_SESSION['Email'])) {
-            echo " - You do not have an Affiliation!";
-            }else {
-            echo  " - ".$_SESSION['Affiliation'];}?>
-        </p>
         
-        <h2>Current Groups</h2>
-        <ul class="list-group m-b-10 m-t-10">
-            <li class="list-group-item m-b-10">
-                    [Group Name] - [Class name] - [Admin Status]
-                    <div class="float-r">
-                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Delete Group</button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="mt-3 col-md-12 card card-inverse bg-light">
+                    <div class="card-header ">
+                        <h2>Account Details</h2>
                     </div>
-                </li>
+                    <table class="card-body table">
+                        <tr>
+                            <td><h4>Username:</h4></td>
+                            <td>
+                                <p>
+                                    <?php if (!isset($_SESSION['UserName'])) {
+                                                echo "You're not logged in!";
+                                              } else {
+                                                echo  $_SESSION['UserName'];}
+                                        ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Email:</h4></td>
+                            <td>
+                                <p>
+                                    <?php if (!isset($_SESSION['Email'])) {
+                                                echo "You're not logged in!";
+                                              } else {
+                                                echo  $_SESSION['Email'];}
+                                        ?>
+                                </p>                        
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="input-group col-md-6 ml-auto">
+                                        <input type="text" class="form-control" placeholder="update"> 
+                                        <div class="input-group-append">
+                                            <button type="submit" name="change-email" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Affiliation:</h4></td>
+                            <td>
+                                <p>
+                                    <?php if (!isset($_SESSION['Affiliation'])) {
+                                                echo "You don't have an affiliation!";
+                                              } else {
+                                                echo  $_SESSION['Affiliation'];}
+                                        ?>
+                                </p>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="input-group col-md-6 ml-auto">
+                                        <input type="text" class="form-control" placeholder="update"> 
+                                        <div class="input-group-append">
+                                            <button type="submit" name="change-email" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <h2>Current Groups</h2>
+            <ul class="list-group m-b-10 m-t-10">
                 <li class="list-group-item m-b-10">
-                    [Group Name] - [Class name] -[Admin Status]
-                    <div class="float-r">
-                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Delete Group</button>
-                    </div>
-                </li>
-                <li class="list-group-item m-b-10">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Exit Group</button>
-                    </div>
-                </li>
-                <li class="list-group-item m-b-10">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                        <button class="btn btn-primary" type="submit">Exit Group</button>
-                    </div>
-                </li>
-            </ul>
-         <a class="btn btn-primary" role="button" href="#">Change Account Information</a>
+                        [Group Name] - [Class name] - [Admin Status]
+                        <div class="float-r">
+                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                            <button class="btn btn-primary" type="submit">Delete Group</button>
+                        </div>
+                    </li>
+                    <li class="list-group-item m-b-10">
+                        [Group Name] - [Class name] -[Admin Status]
+                        <div class="float-r">
+                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                            <button class="btn btn-primary" type="submit">Delete Group</button>
+                        </div>
+                    </li>
+                    <li class="list-group-item m-b-10">
+                        [Group Name] - [Class name]
+                        <div class="float-r">
+                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                            <button class="btn btn-primary" type="submit">Exit Group</button>
+                        </div>
+                    </li>
+                    <li class="list-group-item m-b-10">
+                        [Group Name] - [Class name]
+                        <div class="float-r">
+                            <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                            <button class="btn btn-primary" type="submit">Exit Group</button>
+                        </div>
+                    </li>
+                </ul>
+             <a class="btn btn-primary" role="button" href="#">Change Account Information</a>
+         </div>
     </div>
 </div>
 <?php

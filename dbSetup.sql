@@ -10,7 +10,7 @@ CREATE TABLE `Users` (
   `UserID` INTEGER NOT NULL AUTO_INCREMENT, 
   `UserName` VARCHAR(50) UNIQUE NOT NULL,
   `Email` VARCHAR(100) NOT NULL, 
-  `Password` VARCHAR(256) NOT NULL,
+  `Password` VARCHAR(255) NOT NULL,
   `Affiliation` VARCHAR(100), 
   INDEX (`UserID`), 
   INDEX (`UserName`), 
@@ -22,8 +22,8 @@ SET autocommit=1;
 CREATE TABLE `Groups` (
 	`GroupID` INT NOT NULL AUTO_INCREMENT,
 	`AdminID` INT NOT NULL,
-  `GroupName` VARCHAR(50) UNIQUE NOT NULL,
-  `Password` VARCHAR(256) NOT NULL,
+    `GroupName` VARCHAR(50) UNIQUE NOT NULL,
+    `Password` VARCHAR(255) NOT NULL,
 	`StartDate` DATETIME NOT NULL,
 	`EndDate` DATETIME NOT NULL,
 	PRIMARY KEY (`GroupID`)

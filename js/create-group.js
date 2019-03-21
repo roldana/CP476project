@@ -1,19 +1,27 @@
 $().ready(function() {   
     
+    $('#description').keyup(function(){
+        $('.word-counter').text($.trim(this.value.length)+'/250');
+    });
+    
     jQuery.validator.addMethod("greaterThan", function(value, element, params) {
 
         if (!/Invalid|NaN/.test(new Date(value))) {
-            return new Date(value) > new Date($(params).val());
+            return new Date(value) >= new Date($(params).val());
         }
 
-        return isNaN(value) && isNaN($(params).val()) || (Number(value) > Number($(params).val())); 
-    },'Must be greater than start date');
+        return isNaN(value) && isNaN($(params).val()) || (Number(value) >= Number($(params).val())); 
+    },'Must be greater than or equal to start date');
     
     $("#create-group-form").validate({
         rules: {
             groupname: {
                 required: true,
                 minlength: 3
+            },
+            description: {
+                required: true,
+                maxlength: 250
             },
             pass1: {
                 required: true,
@@ -29,13 +37,17 @@ $().ready(function() {
             },
             enddate: {
                 required: true,
-                 greaterThan: "#startdate"
+                greaterThan: "#startdate"
             }
         },
         messages: {
             groupname: {
                 required: "A group name is required",
                 minlength: "Your group name must be at least 3 characters long!"
+            },
+            description: {
+                required: "A description is required",
+                maxlength: "Your description must be at most 250 characters long!"
             },
             pass1: {
                 required: "Password is required",
@@ -55,6 +67,7 @@ $().ready(function() {
         },
         errorPlacement: function(label, element) {
             label.addClass('arrow');
+            label.addClass('input-box');
             label.insertAfter(element);
         },
         wrapper: 'span'

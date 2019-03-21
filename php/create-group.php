@@ -15,6 +15,11 @@
                 </div>
                 
                 <div class="wrap-input">
+                    <textarea class="input-area" style="resize: none;" rows="4" name="description" id="description" placeholder="Description"></textarea>
+                    <div class="word-counter input-box">0/250</div>
+                </div>
+                
+                <div class="wrap-input">
                     <input class="input-box" type="password" id="pass1" name="pass1" placeholder="Password">
                 </div>
 
