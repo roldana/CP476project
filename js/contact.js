@@ -19,6 +19,7 @@ $().ready(function() {
         },
         errorPlacement: function(label, element) {
             label.addClass('arrow');
+            label.addClass('input-box');
             label.insertAfter(element);
         },
         wrapper: 'span'
