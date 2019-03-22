@@ -24,8 +24,11 @@
     $insert = insertUser($db, $UserName, $Email, $Affiliation, $hash);
     
     if ($insert) {
+        $user = retreiveUser($db, $UserName);
+    
         $_SESSION['LoggedIn'] = True;
         $_SESSION['UserName'] = $UserName;
+        $_SESSION['UserID'] = $user['UserID'];
         $_SESSION['Affiliation'] = $Affiliation;
         $_SESSION['Email'] = $Email;
         header("Location: account.php");

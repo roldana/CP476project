@@ -40,6 +40,35 @@ function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     return True;
 }
 
+function insertGroup($db, $groupName, $adminID, $description, $startDate, $endDate, $hash) {
+    try {
+        $db->beginTransaction();
+        
+        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
+        
+        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $endDate]))) {
+            $db->rollBack();
+            return False;
+        }
+        
+        $sth = $db->prepare('SELECT * FROM Groups WHERE GroupName = ?;');
+        $sth->execute(array($groupName));
+        $GroupID = $sth->fetch()['GroupID'];
+        
+        $sql = "INSERT INTO GroupUsers (GroupID, UserID) VALUES (?, ?);";
+        if (!($db->prepare($sql)->execute([$GroupID, $adminID]))) {
+            $db->rollBack();
+            return False;
+        }     
+        $db->commit();
+    }
+    catch (Exception $e) {
+        return False;
+        errorHandler($e->getMessage());
+    }
+    return True;
+}
+
 function updateUser($db, $data, $UserName) {
     try {
         if (isset($data['Affiliation'])) {

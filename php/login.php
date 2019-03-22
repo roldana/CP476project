@@ -22,6 +22,7 @@ if ($user && password_verify($password, $user['Password'])) {
     $_SESSION['UserName'] = $UserName;
     $_SESSION['Affiliation'] = $user['Affiliation'];
     $_SESSION['Email'] = $user['Email'];
+    $_SESSION['UserID'] = $user['UserID'];
     header("Location: account.php");
 } else {
     header("Location: ../index.php?err=True");

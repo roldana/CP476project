@@ -106,7 +106,6 @@
                                     <button class="btn btn-primary" type="submit">Exit Group</button>
                                 </div>
                             </li>
-
                         </ul>
                     </div>
                 </div>
