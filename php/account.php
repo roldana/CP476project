@@ -2,6 +2,8 @@
     include("../include/header.php");
 ?>
 
+<script type="text/javascript" src="../js/account.js"></script>
+
 <div class="content-container">
     <div class="content-wrap">
         <span class="form-title">
@@ -14,7 +16,7 @@
                     <div class="card-header ">
                         <h2>Account Details</h2>
                     </div>
-                    <table class="card-body table">
+                    <table class="card-body table mb-0">
                         <tr>
                             <td><h4>Username:</h4></td>
                             <td>
@@ -26,11 +28,13 @@
                                         ?>
                                 </p>
                             </td>
+                            <td>
+                            </td>
                         </tr>
                         <tr>
                             <td><h4>Email:</h4></td>
                             <td>
-                                <p>
+                                <p id="p-email">
                                     <?php if (!isset($_SESSION['Email'])) {
                                                 echo "You're not logged in!";
                                               } else {
@@ -41,9 +45,9 @@
                             <td>
                                 <div class="row">
                                     <div class="input-group col-md-6 ml-auto">
-                                        <input type="text" class="form-control" placeholder="update"> 
+                                        <input type="text" id="email" class="form-control" placeholder="update"> 
                                         <div class="input-group-append">
-                                            <button type="submit" name="change-email" class="btn btn-primary">Update</button>
+                                            <button type="submit" name="change-email" id="change-email" class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +56,7 @@
                         <tr>
                             <td><h4>Affiliation:</h4></td>
                             <td>
-                                <p>
+                                <p id="p-affiliation">
                                     <?php if (!isset($_SESSION['Affiliation'])) {
                                                 echo "You don't have an affiliation!";
                                               } else {
@@ -63,9 +67,9 @@
                             <td>
                                 <div class="row">
                                     <div class="input-group col-md-6 ml-auto">
-                                        <input type="text" class="form-control" placeholder="update"> 
+                                        <input type="text" id="affiliation" class="form-control" placeholder="update"> 
                                         <div class="input-group-append">
-                                            <button type="submit" name="change-email" class="btn btn-primary">Update</button>
+                                            <button type="submit" name="change-affiliation" id="change-affiliation" class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </div>                               
@@ -79,23 +83,23 @@
                     <div class="card-header ">
                         <h2>Your Current Groups</h2>
                     </div>
-                    <div class="card-body">        
-                        <ul class="list-group m-b-10 m-t-10">
-                            <li class="list-group-item m-b-10">
+                    <div class="card-body pt-0">        
+                        <ul class="list-group">
+                            <li class="list-group-item m-1">
                                 [Group Name] - [Class name] - [Admin Status]
                                 <div class="float-r">
                                     <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
                                     <button class="btn btn-primary" type="submit">Delete Group</button>
                                 </div>
                             </li>
-                            <li class="list-group-item m-b-10">
+                            <li class="list-group-item m-1">
                                 [Group Name] - [Class name] - [Admin Status]
                                 <div class="float-r">
                                     <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
                                     <button class="btn btn-primary" type="submit">Delete Group</button>
                                 </div>
                             </li>
-                            <li class="list-group-item m-b-10">
+                            <li class="list-group-item m-1">
                                 [Group Name] - [Class name]
                                 <div class="float-r">
                                     <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>

@@ -25,9 +25,7 @@ function retreiveUser($db, $userName) {
 }
 
 function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
-    try {
-        $sth = $db->prepare('INSERT INTO Users ;');
-        
+    try { 
         $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?)";
         
         echo $UserName." ".$Email." ".$Affiliation." ".$Pass;
@@ -40,6 +38,30 @@ function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
         errorHandler($e->getMessage());
     }
     return True;
+}
+
+function updateUser($db, $data, $UserName) {
+    try {
+        if (isset($data['Affiliation'])) {
+            $sql = "UPDATE Users SET Affiliation = ? WHERE Username = ?;";
+            if (!($db->prepare($sql)->execute([$data['Affiliation'], $UserName]))) {
+                return False;
+            }
+           $_SESSION['Affiliation'] = $data['Affiliation'];
+        } elseif (isset($data['Email'])){
+            $sql = "UPDATE Users SET Email = ? WHERE Username = ?;";
+            if (!($db->prepare($sql)->execute([$data['Email'], $UserName]))) {
+                return False;
+            }
+            $_SESSION['Email'] = $data['Email'];
+        } else {
+            return False;
+        }
+    }
+    catch(Exception $e) {
+        errorHandler($e->getMessage());
+    }
+    return true;
 }
 
 function errorHandler($errorString) {
