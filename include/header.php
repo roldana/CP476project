@@ -5,6 +5,12 @@ session_start();
 if ((basename($_SERVER['PHP_SELF']) != "index.php" and basename($_SERVER['PHP_SELF']) != "sign-up.php" and basename($_SERVER['PHP_SELF']) != "contact.php" and basename($_SERVER['PHP_SELF']) != "info.php" and basename($_SERVER['PHP_SELF']) != "error.php") and (!isset($_SESSION['LoggedIn']) or $_SESSION['LoggedIn'] == False)) {
     header("Location: ../index.php"); 
     exit;
+} else if (basename($_SERVER['PHP_SELF']) == "index.php" and (isset($_SESSION['LoggedIn'])) and ($_SESSION['LoggedIn'] == True)){
+    header("Location: php/account.php");
+    exit;
+} else if (basename($_SERVER['PHP_SELF']) == "sign-up.php" and (isset($_SESSION['LoggedIn'])) and ($_SESSION['LoggedIn'] == True)){
+    header("Location: account.php"); 
+    exit;
 }
 
 $prefix="";
