@@ -84,28 +84,31 @@
                         <h2>Your Current Groups</h2>
                     </div>
                     <div class="card-body pt-0">        
-                        <ul class="list-group">
-                            <li class="list-group-item m-1">
-                                [Group Name] - [Class name] - [Admin Status]
-                                <div class="float-r">
-                                    <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                                    <button class="btn btn-danger" type="submit">Delete Group</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item m-1">
-                                [Group Name] - [Class name] - [Admin Status]
-                                <div class="float-r">
-                                    <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                                    <button class="btn btn-danger" type="submit">Delete Group</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item m-1">
-                                [Group Name] - [Class name]
-                                <div class="float-r">
-                                    <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
-                                    <button class="btn btn-danger" type="submit">Exit Group</button>
-                                </div>
-                            </li>
+                        <ul class="list-group" id="group-list">
+                            
+                            <!--                       
+                              <li class="list-group-item m-1">
+                                  [Group Name] - [Class name] - [Admin Status]
+                                  <div class="float-r">
+                                      <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                                      <button class="btn btn-danger" type="submit">Delete Group</button>
+                                  </div>
+                              </li>
+                              <li class="list-group-item m-1">
+                                  [Group Name] - [Class name] - [Admin Status]
+                                  <div class="float-r">
+                                      <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                                      <button class="btn btn-danger" type="submit">Delete Group</button>
+                                  </div>
+                              </li>
+                              <li class="list-group-item m-1">
+                                  [Group Name] - [Class name]
+                                  <div class="float-r">
+                                      <a class="btn btn-primary" role="button" href="group-schedule-view.php">View Contents</a>
+                                      <button class="btn btn-danger" type="submit">Exit Group</button>
+                                  </div>
+                              </li>                       
+                              -->
                         </ul>
                     </div>
                 </div>

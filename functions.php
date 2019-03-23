@@ -24,6 +24,12 @@ function retreiveUser($db, $userName) {
     return $sth->fetch();
 }
 
+function retreiveGroupsAdmin($db, $UserID) {
+    $sth = $db->prepare('SELECT * FROM Groups WHERE AdminID = ?;');
+    $sth->execute(array($UserID));
+    return $sth->fetchAll();
+}
+
 function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     try { 
         $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?)";
@@ -98,3 +104,4 @@ function errorHandler($errorString) {
 }
 
 ?>
+
