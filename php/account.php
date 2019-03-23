@@ -16,66 +16,68 @@
                     <div class="card-header ">
                         <h2>Account Details</h2>
                     </div>
-                    <table class="card-body table mb-0">
-                        <tr>
-                            <td><h4>Username:</h4></td>
-                            <td>
-                                <p>
-                                    <?php if (!isset($_SESSION['UserName'])) {
-                                                echo "You're not logged in!";
-                                              } else {
-                                                echo  $_SESSION['UserName'];}
-                                        ?>
-                                </p>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h4>Email:</h4></td>
-                            <td>
-                                <p id="p-email">
-                                    <?php if (!isset($_SESSION['Email'])) {
-                                                echo "You're not logged in!";
-                                              } else {
-                                                echo  $_SESSION['Email'];}
-                                        ?>
-                                </p>                        
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="input-group col-md-6 ml-auto">
-                                        <input type="text" id="email" class="form-control" placeholder="update"> 
-                                        <div class="input-group-append">
-                                            <button type="submit" name="change-email" id="change-email" class="btn btn-primary">Update</button>
+                    <div class="table-responsive">
+                        <table class="card-body table mb-0">
+                            <tr>
+                                <td><h4>Username:</h4></td>
+                                <td>
+                                    <p>
+                                        <?php if (!isset($_SESSION['UserName'])) {
+                                                    echo "You're not logged in!";
+                                                  } else {
+                                                    echo  $_SESSION['UserName'];}
+                                            ?>
+                                    </p>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h4>Email:</h4></td>
+                                <td>
+                                    <p id="p-email">
+                                        <?php if (!isset($_SESSION['Email'])) {
+                                                    echo "You're not logged in!";
+                                                  } else {
+                                                    echo  $_SESSION['Email'];}
+                                            ?>
+                                    </p>                        
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="input-group col-md-8 ml-auto">
+                                            <input type="text" id="email" class="form-control" placeholder="update"> 
+                                            <div class="input-group-append">
+                                                <button type="submit" name="change-email" id="change-email" class="btn btn-primary">Update</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h4>Affiliation:</h4></td>
-                            <td>
-                                <p id="p-affiliation">
-                                    <?php if (!isset($_SESSION['Affiliation'])) {
-                                                echo "You don't have an affiliation!";
-                                              } else {
-                                                echo  $_SESSION['Affiliation'];}
-                                        ?>
-                                </p>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="input-group col-md-6 ml-auto">
-                                        <input type="text" id="affiliation" class="form-control" placeholder="update"> 
-                                        <div class="input-group-append">
-                                            <button type="submit" name="change-affiliation" id="change-affiliation" class="btn btn-primary">Update</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h4>Affiliation:</h4></td>
+                                <td>
+                                    <p id="p-affiliation">
+                                        <?php if (!isset($_SESSION['Affiliation'])) {
+                                                    echo "You don't have an affiliation!";
+                                                  } else {
+                                                    echo  $_SESSION['Affiliation'];}
+                                            ?>
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="input-group col-md-8 ml-auto">
+                                            <input type="text" id="affiliation" class="form-control" placeholder="update"> 
+                                            <div class="input-group-append">
+                                                <button type="submit" name="change-affiliation" id="change-affiliation" class="btn btn-primary">Update</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>                               
-                            </td>
-                        </tr>
-                    </table>
+                                    </div>                               
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="row">

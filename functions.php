@@ -25,9 +25,17 @@ function retreiveUser($db, $userName) {
 }
 
 function retreiveGroupsAdmin($db, $UserID) {
-    $sth = $db->prepare('SELECT * FROM Groups WHERE AdminID = ?;');
+    $sth = $db->prepare('SELECT * FROM Groups WHERE AdminID = ? ORDER BY GroupName;');
     $sth->execute(array($UserID));
     return $sth->fetchAll();
+}
+
+function removeGroup($db, $GroupID) {
+    $sql = "DELETE FROM Groups WHERE GroupID = ?;";
+    if (!($db->prepare($sql)->execute([$GroupID]))) {
+        return False;
+    }
+    return True;
 }
 
 function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
