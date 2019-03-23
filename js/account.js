@@ -1,17 +1,35 @@
 $(document).ready(function(){
 
-    var jqxhr = $.post("get-groups.php")
+    var jqxhr = $.post("ajax/get-groups.php")
     .done(function(data) {
         var obj = JSON.parse(data);
         obj.forEach(function(element) {
+            
+            var dateObj = new Date(element.StartDate);
+            var month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+            var date = ('0' + dateObj.getDate()).slice(-2);
+            var year = dateObj.getFullYear();
+            var StartDate = year + '/' + month + '/' + date;
+            dateObj = new Date(element.EndDate);
+            month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+            date = ('0' + dateObj.getDate()).slice(-2);
+            year = dateObj.getFullYear();
+            var EndDate = year + '/' + month + '/' + date;
+            
             var str = "<li class=\"list-group-item container-fluid m-1\" id=\""+element.GroupID+"\">";
             str = str + "<div class=\"row\">"; 
             str = str + "<div class=\"col-md-2\"><h5>Group Name:</h5>";
             str = str + "<p>"+element.GroupName+"</p>";
-            str = str + "</div><div class=\"col-md-4\">";
-            str = str + "<h5>Description:</h5>";
-            str = str + "<p>"+element.Description+"</p></div>";
-            str = str + "<div class=\"col-md-4 ml-auto\">";
+            str = str + "</div>";
+            str = str + "<div class=\"col-md-4\"><h5>Description:</h5>";
+            str = str + "<p>"+element.Description+"</p>";
+            str = str + "</div>";
+            str = str + "<div class=\"col-md-2\">";
+            str = str + "<h5>Start Date:</h5>";
+            str = str + "<p>"+StartDate+"</p></div><div class=\"col-md-2\">";
+            str = str + "<h5>End Date:</h5>";
+            str = str + "<p>"+EndDate+"</p></div>";
+            str = str + "<div class=\"col-md-2 ml-auto\">";
             str = str + "<div class=\"float-right\"><a class=\"btn btn-primary m-1\" role=\"button\" style=\"Display: block;\" href=\"group-schedule-view.php?GroupID="+element.GroupID+"\">View Contents</a>";
             str = str + "<button type=\"button\" class=\"btn m-1 btn-danger float-right\">Delete Group</button></div>";
             str = str + "</div></div></li>";
@@ -19,7 +37,7 @@ $(document).ready(function(){
         });
     })
     .fail(function() {
-        alert( "Oops, an error occurred while sending your data! Your account has not been updated." );
+        alert( "Oops, an error occurred while grabbing your current groups! Please come back at a later time to view them." );
     })
     .always(function() {
         //do nothing
@@ -27,7 +45,7 @@ $(document).ready(function(){
 
     $('#group-list').on('click', 'button', function() {
         var me = $(this);
-        var jqxhr = $.post("remove-group.php", {GroupID: $(this).closest('li').attr('id')})
+        var jqxhr = $.post("ajax/remove-group.php", {GroupID: $(this).closest('li').attr('id')})
         .done(function() {
             me.closest('li').remove();
         })
@@ -46,7 +64,7 @@ $(document).ready(function(){
             return;
         }
         
-        var jqxhr = $.post("update-user.php", {Email: $('#email').val()})
+        var jqxhr = $.post("ajax/update-user.php", {Email: $('#email').val()})
         .done(function(data) {
             $('#p-email').text(data);
             $('#email').val("");            
@@ -66,7 +84,7 @@ $(document).ready(function(){
             return;
         }
         
-        var jqxhr = $.post("update-user.php", {Affiliation: $('#affiliation').val()})
+        var jqxhr = $.post("ajax/update-user.php", {Affiliation: $('#affiliation').val()})
         .done(function(data) {
             $('#p-affiliation').text(data);
             $('#affiliation').val("");              

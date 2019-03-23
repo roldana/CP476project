@@ -1,8 +1,8 @@
 <?php
     session_start();
     
-    include_once '../include/config.php';
-    include '../functions.php';
+    include_once '../../include/config.php';
+    include '../../functions.php';
     
     if (isset($_REQUEST['Affiliation'])) {
         $db = getDB();

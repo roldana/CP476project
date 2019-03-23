@@ -2,7 +2,7 @@
 
     session_start();
 
-    include_once("../functions.php");
+    include_once("../../functions.php");
 
     //TODO: Error checking, check if user exists
     
@@ -14,7 +14,7 @@
     $agree = $_REQUEST['email'];
     
     if (($pass1 != $pass2) or !$agree) {
-        header("Location: sign-up.php?err=True");
+        header("Location: ../sign-up.php?err=True");
     }
     
     $hash = password_hash($pass1, PASSWORD_DEFAULT);
@@ -31,9 +31,9 @@
         $_SESSION['UserID'] = $user['UserID'];
         $_SESSION['Affiliation'] = $Affiliation;
         $_SESSION['Email'] = $Email;
-        header("Location: account.php");
+        header("Location: ../account.php");
     } else {
-        header("Location: sign-up.php?err=True");
+        header("Location: ../sign-up.php?err=True");
     }
     
 ?>

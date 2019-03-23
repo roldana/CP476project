@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include_once("../functions.php");
+    include_once("../../functions.php");
   
     if (isset($_REQUEST)) {
         $groupName = $_REQUEST['groupname'];
@@ -13,7 +13,7 @@
     }
     
     if (($pass1 != $pass2) or ($endDate < $startDate)) {
-        header("Location: create-group.php?err=True");
+        header("Location: ../create-group.php?err=True");
     }
     
     $hash = password_hash($pass1, PASSWORD_DEFAULT);
@@ -23,8 +23,8 @@
     $insert = insertGroup($db, $groupName, $_SESSION['UserID'] ,$description, $startDate, $endDate, $hash);
        
     if (!$insert) {
-        header("Location: create-group.php?err=True");
+        header("Location: ../create-group.php?err=True");
     }
     
-    header("Location: account.php");
+    header("Location: ../account.php");
 ?>

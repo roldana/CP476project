@@ -88,7 +88,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
               </div>
               <button type="submit" class="btn btn-outline-success">Search</button>
             </form>
-            <a class="nav-link btn btn-danger text-white m-1" href="<?php echo $prefix; ?>logout.php">Logout</a>
+            <a class="nav-link btn btn-danger text-white m-1" href="<?php echo $prefix."functions/"; ?>logout.php">Logout</a>
         </div>
         <?php } else {?>
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
