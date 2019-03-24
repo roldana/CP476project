@@ -16,11 +16,11 @@
         if($_POST["view"] != '') {
             $messages = retreiveMessages($db, $_SESSION['UserID']);
             foreach($messages as $message) {
-                $output .= '<li class= "list-group-item">
-                                <a href="#">
+                $output .= '<li class= "list-group-item m-1" id="'.$message['MsgID'].'">
+                                <p>
                                     <strong>'.$message["Subject"].'</strong><br />
                                     <small><em>'.$message["MsgBody"].'</em></small>
-                                </a>
+                                </p>
                                 <div class="float-r">
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </div>

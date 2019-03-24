@@ -1,6 +1,6 @@
 $(document).ready(function(){
 // updating the view with notifications using ajax
-    function load_unseen_notification(view = '') {
+    function loadMessages(view = '') {
         $.ajax({
             url:"ajax/get-messages.php",
             method:"POST",
@@ -9,15 +9,17 @@ $(document).ready(function(){
             success:function(data) {
                 if(data.unseenMessages > 0) {
                     $('.count').html(data.unseenMessages);
+                } else {
+                    $('.count').html("");
                 }
             }   
         });
     }
     
-    load_unseen_notification();
+    loadMessages();
 
     // load new messages
     setInterval(function(){ 
-        load_unseen_notification();;
+        loadMessages();;
     }, 5000);
 });

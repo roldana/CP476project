@@ -75,6 +75,14 @@ function retreiveMessages($db, $UserID) {
     return $sth->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function removeMessage($db, $MsgID, $UserID) {
+    $sql = "DELETE FROM Messages WHERE MsgID = ? AND ToID = ?;";
+    if (!($db->prepare($sql)->execute([$MsgID, $UserID]))) {
+        return False;
+    }
+    return True;    
+}
+
 function countMessagesUnread($db, $UserID) {
     $sth = $db->prepare("SELECT COUNT(*) FROM Messages WHERE Messages.ToID = ? AND Messages.Status = '0';");
     $sth->execute(array($UserID));
