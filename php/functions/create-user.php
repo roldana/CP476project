@@ -33,7 +33,7 @@
         $_SESSION['Email'] = $Email;
         header("Location: ../account.php");
     } else {
-        header("Location: ../sign-up.php?err=True");
+        header("Location: ../sign-up.php?err=True&UserName=".$UserName);
     }
     
 ?>

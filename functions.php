@@ -96,14 +96,12 @@ function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     try { 
         $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?)";
         
-        echo $UserName." ".$Email." ".$Affiliation." ".$Pass;
-        
         if (!($db->prepare($sql)->execute([$UserName, $Pass, $Email, $Affiliation]))) {
-            errorHandler("could not create user!");
+            return False;
         }
     }
     catch (Exception $e) {
-        errorHandler($e->getMessage());
+        return False;
     }
     return True;
 }

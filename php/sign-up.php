@@ -9,6 +9,9 @@
             <span class="form-title">
 				Sign Up
 			</span>
+            <?php if (isset($_GET['err']) and isset($_GET['UserName']) and $_GET['err'] == True) { ?>
+                <label class="font-weight-bold text-danger">Cannot create a new user with the username '<?php echo $_GET['UserName']; ?>'!</label>
+            <?php } ?>
             <div class="wrap-input">
                 <input class="input-box" type="text" name="username" placeholder="Username">
             </div>
