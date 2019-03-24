@@ -55,7 +55,7 @@ $(document).ready(function(){
                 //modal content
                 str = str + "<div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title\">"+element.GroupName+"</h4><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button></div>";
                 str = str + "<div class=\"modal-body\"><p>Please enter the password: </p>";
-                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control\" placeholder=\"password\"><div class=\"input-group-append\"><button class=\"btn btn-outline-success\" type=\"button\">Join</button></div></div></div>";
+                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control\" placeholder=\"password\"><div class=\"input-group-append\"><button class=\"btn btn-outline-success modal-submit\" type=\"button\">Join</button></div></div></div>";
                 str = str + "<div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button></div>";
                 str= str + "</div></div></div>";
                 str=str+"</li>";
@@ -74,6 +74,22 @@ $(document).ready(function(){
     $('#group-list').on('click', 'button.join', function() {
         var GroupID = $(this).closest("li").data("GroupID");     
         $('#'+GroupID).modal('show');
+    });
+    
+    $('#group-list').on('click', '.modal-submit', function() {
+        var GroupID = $(this).closest("li").data("GroupID");     
+        var pass = $(this).closest("li").find("input").val();
+        var jqxhr = $.post("ajax/join-group.php", {GroupID: GroupID, Password: pass})
+        .done(function(data) {
+            //console.log(data);
+            window.location.href = "group-schedule-view.php?GroupID="+GroupID;
+        })
+        .fail(function() {
+            alert( "Error joining group. Try again later." );
+        })
+        .always(function() {
+            //do nothing
+        });
     });
     
 });

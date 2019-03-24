@@ -24,6 +24,29 @@ function retreiveUser($db, $userName) {
     return $sth->fetch();
 }
 
+Function joinGroup($db, $GroupID, $UserID, $Password) {
+    $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ?;');
+    $sth->execute(array($GroupID));
+    $group = $sth->fetch();
+    
+    if (!isset($group) or empty($group)) {
+        return False;
+    }
+    
+    $hash = $group['Password'];
+    
+    if (!password_verify($Password, $hash)) {
+        return False;
+    }
+    
+    $sql = "INSERT INTO GroupUsers (GroupID, UserID) VALUES (?, ?);";
+    if (!($db->prepare($sql)->execute([$GroupID, $UserID]))) {
+        return False;
+    }
+    
+    return True;
+}
+
 function retreiveGroupsAdmin($db, $UserID) {
     $sth = $db->prepare('SELECT * FROM Groups WHERE AdminID = ? ORDER BY GroupName;');
     $sth->execute(array($UserID));
