@@ -22,7 +22,7 @@ $(document).ready(function(){
         var me = $(this);
         var jqxhr = $.post("ajax/remove-message.php", {MsgID: $(this).closest('li').attr('id')})
         .done(function(data) {  
-            me.closest('li').remove();
+            loadMessages();
         })
         .fail(function() {
             alert( "Oops, an error occurred while deleting your message! Your account has not been updated." );

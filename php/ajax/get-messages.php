@@ -27,7 +27,7 @@
                             </li>';
             }
             if ($output == '') {
-                $output .= '<li><a href="#" class="text-bold text-italic">No Messages Found</a></li>';
+                $output .= '<li class="m-5" style="list-style-type: none;"><h4 class="font-weight-bold">No Messages Found!</h4></li>';
             }
             updateMessagesRead($db, $_SESSION['UserID']);
         }
