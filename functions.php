@@ -53,6 +53,20 @@ function retreiveGroupsAdmin($db, $UserID) {
     return $sth->fetchAll();
 }
 
+function retreiveGroupsUser($db, $UserID) {
+    $sth = $db->prepare('SELECT * FROM Groups JOIN GroupUsers ON Groups.GroupID = GroupUsers.GroupID WHERE Groups.AdminID <> ? AND GroupUsers.UserID = ? ORDER BY GroupName;');
+    $sth->execute(array($UserID, $UserID));
+    return $sth->fetchAll();
+}
+
+function leaveGroup($db, $UserID, $GroupID) {
+    $sql = "DELETE FROM GroupUsers WHERE GroupID = ? AND UserID = ?;";
+    if (!($db->prepare($sql)->execute([$GroupID, $UserID]))) {
+        return False;
+    }
+    return True;
+}
+
 function removeGroup($db, $GroupID) {
     $sql = "DELETE FROM Groups WHERE GroupID = ?;";
     if (!($db->prepare($sql)->execute([$GroupID]))) {
