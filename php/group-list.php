@@ -1,8 +1,9 @@
 <?php
     include("../include/header.php");
 ?>
+<script type="text/javascript" src="../js/group-list.js"></script>
 
-<div class="content-container">
+<div class="content-container container-fluid">
     <div class="content-wrap">
         <span class="form-title">
             Groups
@@ -10,69 +11,22 @@
         
         <div class="group-list inner-content-wrap">
             <div class="upper-content-wrap">
-                <a class="btn btn-primary btn-lg" href="create-group.php" role="button">Create new group</a>
-                <form class="form-inline float-r">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search for a group" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-success float-left" href="create-group.php" role="button">Create new group</a>
+                    </div>
+                    <div class="input-group col">
+                        <input type="text" class="form-control" id="input-search" placeholder="search for a group">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" id="search" type="button">Search</button>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    [Group Name] - [Class name]
-                    <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Details</button>
-                        <button class="btn btn-primary" type="submit">Join</button>
-                    </div>
-                </li>
+            <ul class="list-group" id="group-list">
+                <h4 class="mt-5">You have not searched for any group yet!</h4>
             </ul>
         </div>
     </div>

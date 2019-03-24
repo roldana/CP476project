@@ -38,6 +38,12 @@ function removeGroup($db, $GroupID) {
     return True;
 }
 
+Function searchGroups($db, $Input) {
+    $sth = $db->prepare("SELECT * FROM Groups JOIN Users ON Groups.AdminID=Users.UserID WHERE GroupName LIKE concat( '%', ?, '%') or UserName LIKE concat( '%', ?, '%');");
+    $sth->execute(array($Input, $Input));
+    return $sth->fetchAll();
+}
+
 function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     try { 
         $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?)";
