@@ -94,7 +94,7 @@ Function searchGroups($db, $Input) {
 
 function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     try { 
-        $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?);";
         
         if (!($db->prepare($sql)->execute([$UserName, $Pass, $Email, $Affiliation]))) {
             return False;
