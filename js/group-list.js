@@ -42,12 +42,15 @@ $(document).ready(function(){
                 str = str + "<div class=\"col-md-2\"><h5>Group Name:</h5>";
                 str = str + "<p>"+element.GroupName+"</p>";
                 str = str + "</div>";
-                str = str + "<div class=\"col-md-4\"><h5>Admin:</h5>";
+                str = str + "<div class=\"col-md-2\"><h5>Admin:</h5>";
                 str = str + "<p>"+element.UserName+"</p>";
                 str = str + "</div>";
+                str = str + "<div class=\"col-md-4\"><h5>Description:</h5>";
+                str = str + "<p>"+element.Description+"</p>";
+                str = str + "</div>";
                 str = str + "<div class=\"col-md-2 ml-auto\">";
-                str = str + "<div class=\"float-right\"><button class=\"btn btn-primary m-1 float-right\">View Details</button>";
-                str = str + "<button type=\"button\" class=\"btn m-1 btn-success float-right join\" toggle=\"modal\" data-target=\"#"+element.GroupID+"\">Join Group</button></div>";
+                str = str + "<div class=\"float-right\">";
+                str = str + "<button type=\"button\" class=\"btn m-1 btn-success btn-lg float-right join\" toggle=\"modal\" data-target=\"#"+element.GroupID+"\">Join Group</button></div>";
                 str = str + "</div></div>";
                 
                 //modal
@@ -92,4 +95,20 @@ $(document).ready(function(){
         });
     });
     
+    var term = getQueryVariable("search"); 
+    if (term) {
+        $('#input-search').val(term);
+        $('#search').click();
+    }
+    
 });
+
+function getQueryVariable(variable) {
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
