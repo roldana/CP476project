@@ -37,7 +37,7 @@ $(document).ready(function(){
                 year = dateObj.getFullYear();
                 var EndDate = year + '/' + month + '/' + date;
                 
-                var str = "<li class=\"list-group-item container-fluid m-1\" id=\""+element.GroupID+"\">";
+                var str = "<li class=\"list-group-item container-fluid m-1\" id=\""+element.GroupID+"_"+element.Admin_ID+"\">";
                 str = str + "<div class=\"row\">"; 
                 str = str + "<div class=\"col-md-2\"><h5>Group Name:</h5>";
                 str = str + "<p>"+element.GroupName+"</p>";
@@ -47,20 +47,33 @@ $(document).ready(function(){
                 str = str + "</div>";
                 str = str + "<div class=\"col-md-2 ml-auto\">";
                 str = str + "<div class=\"float-right\"><button class=\"btn btn-primary m-1 float-right\">View Details</button>";
-                str = str + "<button type=\"button\" class=\"btn m-1 btn-success float-right\">Join Group</button></div>";
-                str = str + "</div></div></li>";
-                $("#group-list" ).append(str);
+                str = str + "<button type=\"button\" class=\"btn m-1 btn-success float-right join\" toggle=\"modal\" data-target=\"#"+element.GroupID+"\">Join Group</button></div>";
+                str = str + "</div></div>";
+                
+                //modal
+                str = str + "<div id=\""+element.GroupID+"\" class=\"modal fade\" role=\"dialog\"><div class=\"modal-dialog\">";
+                //modal content
+                str = str + "<div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title\">"+element.GroupName+"</h4><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button></div>";
+                str = str + "<div class=\"modal-body\"><p>Please enter the password: </p>";
+                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control\" placeholder=\"password\"><div class=\"input-group-append\"><button class=\"btn btn-outline-success\" type=\"button\">Join</button></div></div></div>";
+                str = str + "<div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button></div>";
+                str= str + "</div></div></div>";
+                str=str+"</li>";
+                $("#group-list").append(str);
+                $("#"+element.GroupID+"_"+element.Admin_ID).data("GroupID", element.GroupID);
             });
         })
         .fail(function() {
-            alert( "Oops, an error occurred while sending your data! Your account has not been updated." );
+            alert( "Oops, an error occurred while searching. Try again later." );
         })
         .always(function() {
             //do nothing
         });
-        
-        
     });
     
-
+    $('#group-list').on('click', 'button.join', function() {
+        var GroupID = $(this).closest("li").data("GroupID");     
+        $('#'+GroupID).modal('show');
+    });
+    
 });
