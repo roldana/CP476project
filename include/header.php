@@ -43,12 +43,13 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
+      
     <?php if ((basename($_SERVER['PHP_SELF']) == "index.php")) { ?>
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css"> 
-    <link rel="stylesheet" type="text/css" href="css/util.css"> 
+    <link rel="stylesheet" type="text/css" href="css/util.css">  
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/jquery/jquery.validate.min.js"></script>
     <?php } else { ?>
@@ -56,9 +57,10 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
 	<link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <link rel="stylesheet" type="text/css" href="../css/util.css">    
+    <link rel="stylesheet" type="text/css" href="../css/util.css">     
     <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="../vendor/jquery/jquery.validate.min.js"></script>
+    <script src="../js/header-notify.js"></script> 
     <?php } ?>
 <!--===============================================================================================-->
 </head>
@@ -71,13 +73,15 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
             <?php if ((isset($_SESSION['LoggedIn'])) && $_SESSION['LoggedIn'] == True) {?>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Account
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Account
+                    <span class="badge badge-success count"></span>
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="<?php echo $prefix; ?>account.php">My Account</a>
                     <a class="dropdown-item" href="<?php echo $prefix; ?>group-list.php">Join Groups</a>
-                    <a class="dropdown-item" href="<?php echo $prefix; ?>message-centre.php">Message Centre</a>
+                    <a class="dropdown-item" href="<?php echo $prefix; ?>message-centre.php">Message Centre
+                        <span class="badge badge-success count"></span>
+                    </a>
                 </div>
             </li>
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>

@@ -18,6 +18,8 @@ function getDB() {
     return $db;
 }
 
+
+
 function retreiveUser($db, $userName) {
     $sth = $db->prepare('SELECT * FROM Users WHERE Username = ?;');
     $sth->execute(array($userName));
@@ -57,6 +59,26 @@ function retreiveGroupsUser($db, $UserID) {
     $sth = $db->prepare('SELECT * FROM Groups JOIN GroupUsers ON Groups.GroupID = GroupUsers.GroupID WHERE Groups.AdminID <> ? AND GroupUsers.UserID = ? ORDER BY GroupName;');
     $sth->execute(array($UserID, $UserID));
     return $sth->fetchAll();
+}
+
+function updateMessagesRead($db, $UserID) {
+    $sql = "UPDATE Messages SET Status = 1 WHERE Status = 0 AND ToID = ?;;";
+    if (!($db->prepare($sql)->execute([$UserID]))) {
+        return False;
+    }
+    return True;
+}
+
+function retreiveMessages($db, $UserID) {
+    $sth = $db->prepare('SELECT * FROM Messages WHERE Messages.ToID = ?;');
+    $sth->execute(array($UserID));
+    return $sth->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function countMessagesUnread($db, $UserID) {
+    $sth = $db->prepare("SELECT COUNT(*) FROM Messages WHERE Messages.ToID = ? AND Messages.Status = '0';");
+    $sth->execute(array($UserID));
+    return $sth->fetch();
 }
 
 function verifyGroupUser($db, $UserID, $GroupID) {

@@ -14,43 +14,37 @@
                 <li class="list-group-item">
                     [Message Title]
                     <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Message</button>
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Message Title]
                     <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Message</button>
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Message Title]
                     <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Message</button>
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Message Title]
                     <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Message</button>
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Message Title]
                     <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Message</button>
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     [Message Title]
                     <div class="float-r">
-                        <button class="btn btn-primary" type="submit">View Message</button>
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </div>
                 </li>
             </ul>
