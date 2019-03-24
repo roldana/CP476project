@@ -59,6 +59,17 @@ function retreiveGroupsUser($db, $UserID) {
     return $sth->fetchAll();
 }
 
+function verifyGroupUser($db, $UserID, $GroupID) {
+    $sql = "SELECT * FROM GroupUsers WHERE GroupID = ? AND UserID = ?;";
+    $sth = $db->prepare($sql);
+    $sth->execute([$GroupID, $UserID]);
+    $data = $sth->fetch();
+    if ($data) {
+        return True;
+    }
+    return False;
+}
+
 function leaveGroup($db, $UserID, $GroupID) {
     $sql = "DELETE FROM GroupUsers WHERE GroupID = ? AND UserID = ?;";
     if (!($db->prepare($sql)->execute([$GroupID, $UserID]))) {

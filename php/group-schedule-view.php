@@ -1,4 +1,17 @@
-<?php include("../include/header.php"); ?>
+<?php include("../include/header.php"); 
+
+    include_once("../functions.php");
+    
+    $db = getDB();
+    
+    if(!empty($_GET)) {
+        if (!verifyGroupUser($db, $_SESSION['UserID'], $_GET['GroupID'])) {
+            header("Location: account.php");
+        }
+    } else {
+        header("Location: account.php");
+    }
+?>
 <div class="content-container">
 
 <div class="content-wrap">
