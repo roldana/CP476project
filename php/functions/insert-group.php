@@ -9,6 +9,8 @@
         $pass1 = $_REQUEST['pass1'];
         $pass2 = $_REQUEST['pass2'];
         $startDate = $_REQUEST['startdate'];
+        $lat = $_REQUEST['lat'];
+        $lng = $_REQUEST['lng'];
     }
 
     
@@ -21,7 +23,7 @@
     
     $db = getDB();
     
-    $insert = insertGroup($db, $groupName, $_SESSION['UserID'] ,$description, $startDate, $hash);
+    $insert = insertGroup($db, $groupName, $_SESSION['UserID'] ,$description, $startDate, $hash, $lat, $lng);
        
     if (!$insert) {
         header("Location: ../create-group.php?err=True");

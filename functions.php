@@ -171,13 +171,13 @@ function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     return True;
 }
 
-function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash) {
+function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash, $lat, $lng) {
     try {
         $db->beginTransaction();
         
-        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate) VALUES (DEFAULT, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 7 DAY));";
+        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, Lat, Lng) VALUES (DEFAULT, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 7 DAY), ?, ?);";
         
-        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $startDate]))) {
+        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $startDate, $lat, $lng]))) {
             $db->rollBack();
             return False;
         }

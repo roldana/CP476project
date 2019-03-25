@@ -27,6 +27,8 @@ CREATE TABLE `Groups` (
     `Password` VARCHAR(255) NOT NULL,
 	`StartDate` DATETIME NOT NULL,
 	`EndDate` DATETIME NOT NULL,
+    `Lat` FLOAT(12,8) NOT NULL,
+    `Lng` FLOAT(12,8) NOT NULL,
 	PRIMARY KEY (`GroupID`)
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
