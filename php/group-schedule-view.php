@@ -1,5 +1,9 @@
 <?php include("../include/header.php"); 
 
+    if(!isset($_SESSION)) { 
+        session_start(); 
+    } 
+
     include_once("../functions.php");
     
     $db = getDB();
@@ -12,6 +16,12 @@
         header("Location: account.php");
     }
 ?>
+<script src="../js/group-schedule-view.js"></script> 
+
+<input class="d-none" id="msg-count" value="">
+<input class="d-none" id="group-id" value="<?php echo $_GET['GroupID'];?>">
+<input class="d-none" id="user-id" value="<?php echo $_SESSION['UserID'];?>">
+
 <div class="content-container">
 
 <div class="content-wrap">
@@ -567,7 +577,7 @@
         <div class="row">
             <div class="card card-inverse col-lg-4"  style="height: 500px;">
                 <div class="card-body">
-                    <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+                    <ul class="list-group list-group-flush" id="scroll" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
                         <li class="row list-group-item">
                             <div class="col-md-10">
                                 <p>
@@ -627,9 +637,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
+                        <input id="text-content" type="text" class="form-control input-sm" placeholder="Type your message here...">
                         <span class="input-group-btn">
-                            <button class="btn btn-success" id="btn-chat">Send</button>
+                            <button class="btn btn-success" id="send-chat">Send</button>
                         </span>
                     </div>
                 </div>

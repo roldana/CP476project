@@ -24,6 +24,12 @@ function retreiveUser($db, $userName) {
     return $sth->fetch();
 }
 
+function retreiveUserName($db, $userID) {
+    $sth = $db->prepare('SELECT UserName FROM Users WHERE UserID = ?;');
+    $sth->execute(array($userID));
+    return $sth->fetch();
+}
+
 Function joinGroup($db, $GroupID, $UserID, $Password) {
     $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ?;');
     $sth->execute(array($GroupID));
@@ -100,6 +106,44 @@ function countMessagesUnread($db, $UserID) {
     $sth = $db->prepare("SELECT COUNT(*) FROM Messages WHERE Messages.ToID = ? AND Messages.Status = '0';");
     $sth->execute(array($UserID));
     return $sth->fetch();
+}
+
+function retreiveChatTotal($db, $GroupID) {
+    $sth = $db->prepare("SELECT MsgTotal FROM ChatIdentifier WHERE GroupID = ?;");
+    $sth->execute(array($GroupID));
+    return $sth->fetch();
+}
+
+function retreiveChatMessages($db, $GroupID) {
+    $sth = $db->prepare('SELECT * FROM ChatMessages WHERE ChatMessages.GroupID = ? ORDER BY MsgDate ASC;');
+    $sth->execute(array($GroupID));
+    return $sth->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function sendChatMessage($db, $GroupID, $UserID, $MsgBody) {
+    try {
+        $db->beginTransaction();
+        $sql = "Update ChatIdentifier SET MsgTotal = MsgTotal + 1 WHERE GroupID = ?;";
+        
+        if (!($db->prepare($sql)->execute([$GroupID]))) {
+            $db->rollback();
+            return False;
+        }
+        
+        $sql = "INSERT INTO ChatMessages (GroupID, UserID, Content, MsgDate) VALUES (?, ?, ?, ?);";
+        
+        if (!($db->prepare($sql)->execute([$GroupID, $UserID, $MsgBody, time()]))) {
+            $db->rollback();
+            return False;
+        }
+    }
+    catch (Exception $e) {
+        $db->rollback();
+        echo $e->getMessage();
+        return false;
+    }
+    $db->commit();
+    return True;
 }
 
 function verifyGroupUser($db, $UserID, $GroupID) {
@@ -190,7 +234,14 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash,
         if (!($db->prepare($sql)->execute([$GroupID, $adminID]))) {
             $db->rollBack();
             return False;
-        }     
+        } 
+
+        $sql = "INSERT INTO ChatIdentifier (GroupID) VALUES (?);";
+        if (!($db->prepare($sql)->execute([$GroupID]))) {
+            $db->rollBack();
+            return False;
+        } 
+        
         $db->commit();
         sendMessage($db, $adminID, "0", "Group Created!", "Your group \"".$groupName."\" has been created. You can visit your group from the Account page.");
     }

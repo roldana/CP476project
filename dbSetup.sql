@@ -57,6 +57,7 @@ CREATE TABLE `ChatIdentifier` (
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ChatMessages` (
+    `GroupID` INT NOT NULL,
     `UserID` INT NOT NULL,
     `MsgDate` INT NOT NULL,
     `Content` TEXT NOT NULL ,
@@ -71,8 +72,10 @@ ALTER TABLE `GroupUsers` ADD CONSTRAINT `GroupUsers_fk1` FOREIGN KEY (`UserID`) 
 ALTER TABLE `Messages` ADD CONSTRAINT `Messages_fk0` FOREIGN KEY (`FromID`) REFERENCES `Users`(`UserID`);
 ALTER TABLE `Messages` ADD CONSTRAINT `Messages_fk1` FOREIGN KEY (`ToID`) REFERENCES `Users`(`UserID`);
 
-ALTER TABLE `ChatIdentifier` ADD CONSTRAINT `ChatIdentifier_fk0` FOREIGN KEY (`GroupID`) REFERENCES `Groups`(`GroupID`);
-ALTER TABLE `ChatMessages` ADD CONSTRAINT `ChatMessages_fk1` FOREIGN KEY (`UserID`) REFERENCES `Users`(`UserID`);
+ALTER TABLE `ChatIdentifier` ADD CONSTRAINT `ChatIdentifier_fk0` FOREIGN KEY (`GroupID`) REFERENCES `Groups`(`GroupID`) ON DELETE CASCADE;
+
+ALTER TABLE `ChatMessages` ADD CONSTRAINT `ChatMessages_fk0` FOREIGN KEY (`UserID`) REFERENCES `Users`(`UserID`) ON DELETE CASCADE;
+ALTER TABLE `ChatMessages` ADD CONSTRAINT `ChatMessages_fk1` FOREIGN KEY (`GroupID`) REFERENCES `Groups`(`GroupID`) ON DELETE CASCADE;
 
 /*LEAVE AT LEAST THE FIRST 'Calendar' USER - USED TO SEND MESSAGES FROM SYSTEM TO USERS*/
 INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (0, "Calendar", "youwontevergetthishash", "system@system", "system");
