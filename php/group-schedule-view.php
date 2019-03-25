@@ -565,9 +565,31 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="card card-inverse col-md-6 ml-auto">
+            <div class="card card-inverse col-md-4"  style="height: 500px;">
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+                        <li class="row list-group-item">
+                            <div class="col-md-10">
+                                <p>
+                                    <strong>Someone Else</strong>
+                                    <small>March 29th, 2019 @ 5:20PM</small> 
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="row list-group-item">
+                            <div class="col-md-10">
+                                <p>
+                                    <strong>Someone Else</strong>
+                                    <small>March 29th, 2019 @ 5:20PM</small> 
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
                         <li class="row list-group-item">
                             <div class="col-md-10">
                                 <p>
@@ -612,11 +634,29 @@
                     </div>
                 </div>
             </div>
+            <div id="map" class="col-md-8" style="width:100%; height:500px; border: 2px solid ; border-radius: 5px;"></div>
+            <script>
+            // Initialize and add the map
+            function initMap() {
+                // The location of wlu
+                var wlu = {lat: 43.473729, lng:-80.5289751};
+                var mapOptions = {disableDefaultUI: true, zoom: 16, center: wlu}
+                // The map, centered at wlu
+                var map = new google.maps.Map(
+                    document.getElementById('map'), mapOptions);
+                
+                // The marker, positioned at wlu
+                var marker = new google.maps.Marker({position: wlu, map: map});
+            }
+            </script>
         </div>
     </div>
 </div>
 
 </div>
 <br>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB66pDOAGoYdLv3J8nk6oSD6OVjxPKsXb8&callback=initMap"></script>
+
 
 <?php include("../include/footer.php"); ?>

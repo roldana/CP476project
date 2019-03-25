@@ -29,6 +29,7 @@ CREATE TABLE `Groups` (
 	`EndDate` DATETIME NOT NULL,
     `Lat` FLOAT(12,8) NOT NULL,
     `Lng` FLOAT(12,8) NOT NULL,
+    `Status` INT NOT NULL DEFAULT 0,
 	PRIMARY KEY (`GroupID`)
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
