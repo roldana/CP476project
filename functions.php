@@ -68,7 +68,7 @@ function updateMessagesRead($db, $UserID) {
 }
 
 function retreiveMessages($db, $UserID) {
-    $sth = $db->prepare('SELECT * FROM Messages JOIN Users WHERE Messages.ToID = ? AND Messages.FromID = Users.UserID;');
+    $sth = $db->prepare('SELECT * FROM Messages JOIN Users WHERE Messages.ToID = ? AND Messages.FromID = Users.UserID ORDER BY MsgDate DESC;');
     $sth->execute(array($UserID));
     return $sth->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -171,13 +171,13 @@ function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     return True;
 }
 
-function insertGroup($db, $groupName, $adminID, $description, $startDate, $endDate, $hash) {
+function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash) {
     try {
         $db->beginTransaction();
         
-        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate) VALUES (DEFAULT, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 7 DAY));";
         
-        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $endDate]))) {
+        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $startDate]))) {
             $db->rollBack();
             return False;
         }

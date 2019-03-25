@@ -4,15 +4,6 @@ $().ready(function() {
         $('.word-counter').text($.trim(this.value.length)+'/250');
     });
     
-    jQuery.validator.addMethod("greaterThan", function(value, element, params) {
-
-        if (!/Invalid|NaN/.test(new Date(value))) {
-            return new Date(value) >= new Date($(params).val());
-        }
-
-        return isNaN(value) && isNaN($(params).val()) || (Number(value) >= Number($(params).val())); 
-    },'Must be greater than or equal to start date');
-    
     $("#create-group-form").validate({
         rules: {
             groupname: {
@@ -34,10 +25,6 @@ $().ready(function() {
             },
             startdate: {
                 required: true
-            },
-            enddate: {
-                required: true,
-                greaterThan: "#startdate"
             }
         },
         messages: {
@@ -60,9 +47,6 @@ $().ready(function() {
             },
             startdate: {
                 required: "You must include a start date"
-            },
-            enddate: {
-                required: "You must include an end date"
             }
         },
         errorPlacement: function(label, element) {

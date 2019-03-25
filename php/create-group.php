@@ -27,14 +27,9 @@
                     <input class="input-box" type="password" id="pass2" name="pass2" placeholder="Repeat Password">
                 </div>
 
-                <label for="start-date" class="input-label-top">Enter a Start Date:</label>
+                <label for="start-date" class="input-label-top">Enter a Start Date (End Date will be 7 days from Start Date):</label>
                 <div class="wrap-input">
                     <input class="input-box" type="date" id="startdate" name="startdate" id="start-date">
-                </div>
-
-                <label for="start-date" class="input-label-top">Enter an End Date:</label>
-                <div class="wrap-input">
-                    <input class="input-box" type="date" id="enddate" name="enddate" id="end-date">
                 </div>
 
                 <button class="btn btn-outline-success float-r" type="submit">Create Group</button>
