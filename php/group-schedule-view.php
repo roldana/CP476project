@@ -565,7 +565,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="card card-inverse col-md-4"  style="height: 500px;">
+            <div class="card card-inverse col-lg-4"  style="height: 500px;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
                         <li class="row list-group-item">
@@ -634,7 +634,7 @@
                     </div>
                 </div>
             </div>
-            <div id="map" class="col-md-8" style="width:100%; height:500px; border: 2px solid ; border-radius: 5px;"></div>
+            <div id="map" class="col-lg-8" style="width:100%; height:500px; border: 2px solid ; border-radius: 5px;"></div>
             <script>
             // Initialize and add the map
             function initMap() {
