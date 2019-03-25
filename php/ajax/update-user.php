@@ -6,7 +6,7 @@
     
     if (isset($_REQUEST['Affiliation'])) {
         $db = getDB();
-        if (updateUser($db, $_REQUEST, $_SESSION['UserName'])) {
+        if (updateUser($db, $_REQUEST, $_SESSION['UserID'])) {
             echo $_REQUEST['Affiliation'];
         } 
         else {
@@ -15,7 +15,7 @@
     }
     else if (isset($_REQUEST['Email'])) {
         $db = getDB();
-        if (updateUser($db, $_REQUEST, $_SESSION['UserName'])) {
+        if (updateUser($db, $_REQUEST, $_SESSION['UserID'])) {
             echo $_REQUEST['Email'];
         } 
         else {

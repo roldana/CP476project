@@ -43,7 +43,7 @@ Function joinGroup($db, $GroupID, $UserID, $Password) {
     if (!($db->prepare($sql)->execute([$GroupID, $UserID]))) {
         return False;
     }
-    
+    sendMessage($db, $UserID, "0", "Group Joined!", "You have joined the group \"".$group['GroupName']."\". You can visit this group from the Account page.");
     return True;
 }
 
@@ -118,14 +118,34 @@ function leaveGroup($db, $UserID, $GroupID) {
     if (!($db->prepare($sql)->execute([$GroupID, $UserID]))) {
         return False;
     }
+    
+    $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ?;');
+    $sth->execute(array($GroupID));
+    $group = $sth->fetch();
+    
+    sendMessage($db, $UserID, "0", "Group Left!", "You have left the group \"".$group['GroupName']."\". You can no longer visit this group from the Account page.");
     return True;
 }
 
 function removeGroup($db, $GroupID) {
+    
+    $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ?;');
+    $sth->execute(array($GroupID));
+    $group = $sth->fetch();
+    
+    $sth = $db->prepare('SELECT * FROM GroupUsers JOIN Users WHERE GroupID = ? AND GroupUsers.UserID = Users.UserID;');
+    $sth->execute(array($GroupID));
+    $groupUsers = $sth->fetchAll(PDO::FETCH_ASSOC);
+    
     $sql = "DELETE FROM Groups WHERE GroupID = ?;";
     if (!($db->prepare($sql)->execute([$GroupID]))) {
         return False;
     }
+    
+    foreach($groupUsers as $user) {
+        sendMessage($db, $user['UserID'], "0", "Group Deleted!", "The group \"".$group['GroupName']."\" has been deleted. The group can no longer be visited from the Account page nor can it be found through the search bar.");
+    }
+    
     return True;
 }
 
@@ -146,6 +166,8 @@ function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     catch (Exception $e) {
         return False;
     }
+    
+    sendMessage($db, $UserID, "0", "Welcome!", "Welcome to Calendar! Search for a group using the search bar or create your own on the Join Group page to get started.");
     return True;
 }
 
@@ -170,6 +192,7 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $endDa
             return False;
         }     
         $db->commit();
+        sendMessage($db, $adminID, "0", "Group Created!", "Your group \"".$groupName."\" has been created. You can visit your group from the Account page.");
     }
     catch (Exception $e) {
         return False;
@@ -181,13 +204,13 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $endDa
 function updateUser($db, $data, $UserName) {
     try {
         if (isset($data['Affiliation'])) {
-            $sql = "UPDATE Users SET Affiliation = ? WHERE Username = ?;";
+            $sql = "UPDATE Users SET Affiliation = ? WHERE UserID = ?;";
             if (!($db->prepare($sql)->execute([$data['Affiliation'], $UserName]))) {
                 return False;
             }
            $_SESSION['Affiliation'] = $data['Affiliation'];
         } elseif (isset($data['Email'])){
-            $sql = "UPDATE Users SET Email = ? WHERE Username = ?;";
+            $sql = "UPDATE Users SET Email = ? WHERE UserID = ?;";
             if (!($db->prepare($sql)->execute([$data['Email'], $UserName]))) {
                 return False;
             }
@@ -199,6 +222,8 @@ function updateUser($db, $data, $UserName) {
     catch(Exception $e) {
         errorHandler($e->getMessage());
     }
+    
+    sendMessage($db, $Username, "0", "Your account details have changed.", "Your account details have changed. Check them on the Account page to verify the information is correct.");
     return true;
 }
 

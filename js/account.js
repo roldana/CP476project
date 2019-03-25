@@ -89,7 +89,7 @@ $(document).ready(function(){
     $('#group-list').on('click', 'button.del', function() {
         var me = $(this);
         var jqxhr = $.post("ajax/remove-group.php", {GroupID: $(this).closest('li').attr('id')})
-        .done(function() {
+        .done(function(data) {
             me.closest('li').remove();
         })
         .fail(function() {
