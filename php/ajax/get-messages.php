@@ -16,14 +16,23 @@
         if($_POST["view"] != '') {
             $messages = retreiveMessages($db, $_SESSION['UserID']);
             foreach($messages as $message) {
-                $output .= '<li class= "list-group-item m-1" id="'.$message['MsgID'].'">
-                                <p>
-                                    <strong>'.$message["Subject"].'</strong><br />
-                                    <small><em>'.$message["MsgBody"].'</em></small>
-                                </p>
+                $output .= '<li class= "list-group-item m-1 container-fluid" id="'.$message['MsgID'].'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>
+                                            <strong>'.$message["UserName"].' - '.$message["Subject"].'</strong><br />
+                                            <small><em>'.$message["MsgBody"].'</em></small>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 ml-auto">
+                                        <strong class="float-right">'.date("F j, Y, g:i a", $message["MsgDate"]).'</strong>
+                                    </div>
+                                </div>
+
                                 <div class="float-r">
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </div>
+
                             </li>';
             }
             if ($output == '') {

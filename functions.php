@@ -68,7 +68,7 @@ function updateMessagesRead($db, $UserID) {
 }
 
 function retreiveMessages($db, $UserID) {
-    $sth = $db->prepare('SELECT * FROM Messages WHERE Messages.ToID = ?;');
+    $sth = $db->prepare('SELECT * FROM Messages JOIN Users WHERE Messages.ToID = ? AND Messages.FromID = Users.UserID;');
     $sth->execute(array($UserID));
     return $sth->fetchAll(PDO::FETCH_ASSOC);
 }
