@@ -18,8 +18,6 @@ function getDB() {
     return $db;
 }
 
-
-
 function retreiveUser($db, $userName) {
     $sth = $db->prepare('SELECT * FROM Users WHERE Username = ?;');
     $sth->execute(array($userName));
@@ -81,6 +79,21 @@ function removeMessage($db, $MsgID, $UserID) {
         return False;
     }
     return True;    
+}
+
+function sendMessage($db, $ToID, $FromID, $Subject, $MsgBody) {
+    if ($FromID == "") {$FromID = "0";}
+    try { 
+        $sql = "INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT);";
+        
+        if (!($db->prepare($sql)->execute([$ToID, $FromID, time(), $Subject, $MsgBody]))) {
+            return False;
+        }
+    }
+    catch (Exception $e) {
+        return False;
+    }
+    return True;
 }
 
 function countMessagesUnread($db, $UserID) {
