@@ -1,3 +1,5 @@
+var total = 0;
+
 $(document).ready(function(){
 
     let trigger = false;
@@ -29,6 +31,10 @@ $(document).ready(function(){
             success:function(data) {
                 if (cell != '') {
                     $('#'+cell).html(data.count + ' of ' +  data.total);
+                    if (data.total != total) {
+                        total = data.total;
+                        updateAllCells();    
+                    }
                 }
                 if (get != '') {
                     data.get.forEach(function(element) {
@@ -53,12 +59,16 @@ $(document).ready(function(){
     
     updateTimeSheet('g','','','');
     
-    var i, j;
-    for (i = 0; i < 32; i++) {
-        for (j = 0; j < 7; j++) {
-            updateTimeSheet('','','',i + "-" +j);
+    function updateAllCells() {
+        var i, j;
+        for (i = 0; i < 32; i++) {
+            for (j = 0; j < 7; j++) {
+                updateTimeSheet('','','',i + "-" +j);
+            }
         }
     }
+    
+    updateAllCells();
     
     function loadMessages(view = '') {
         var change = false;
