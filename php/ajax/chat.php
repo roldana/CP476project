@@ -3,6 +3,8 @@
         session_start(); 
     } 
     
+    date_default_timezone_set('America/Toronto');
+    
     include_once("../../functions.php");
   
     //if $_POST['view'] != '' -> Return list of html elements containing each element
@@ -28,7 +30,7 @@
                                     <div class="col-md-10">
                                         <p>
                                             <strong>'.$message['UserName'].'</strong>
-                                            <small>'.date("F j, Y, g:i a", $message["MsgDate"]).'</small>
+                                            <small>'.date("l jS \of F Y h:i ", $message["MsgDate"]).'</small>
                                         </p>
                                         <p>'.$message['Content'].'
                                         </p>
@@ -38,7 +40,7 @@
                     $output .= '<li class="row list-group-item">
                                     <div class="col-md-10 ml-auto">
                                         <p class="text-right">
-                                            <small>'.date("F j, Y, g:i a", $message["MsgDate"]).'</small>
+                                            <small>'.date("l F jS h:i A", $message["MsgDate"]).'</small>
                                             <strong>'.$message['UserName'].'</strong>
                                         </p>
                                         <p class="text-right">'.$message['Content'].'

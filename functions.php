@@ -53,6 +53,12 @@ Function joinGroup($db, $GroupID, $UserID, $Password) {
     return True;
 }
 
+function retreiveGroupByID($db, $GroupID) {
+    $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ? ORDER BY GroupName;');
+    $sth->execute(array($GroupID));
+    return $sth->fetch();
+}
+
 function retreiveGroupsAdmin($db, $UserID) {
     $sth = $db->prepare('SELECT * FROM Groups WHERE AdminID = ? ORDER BY GroupName;');
     $sth->execute(array($UserID));

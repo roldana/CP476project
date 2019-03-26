@@ -25,7 +25,7 @@
                                         </p>
                                     </div>
                                     <div class="col-md-2 ml-auto">
-                                        <strong class="float-right">'.date("F j, Y, g:i a", $message["MsgDate"]).'</strong>
+                                        <strong class="float-right">'.date("l jS \of F Y h:i:s A", $message["MsgDate"]).'</strong>
                                     </div>
                                 </div>
 
