@@ -35,11 +35,14 @@
             <h1><?php echo $group['GroupName']; ?></h1> </br>
         </div>
         <div class="row">
-            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded m-1" style="height: 500px;">
+            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded m-1" style="height: 700px;">
                 <div class="card-header">
                     <h4><?php echo $group['Description']; ?></h4>
                 </div>
-                <div class="card-body table-responsive" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+                
+                <?php if ($group['Status'] == 0) {?>
+                
+                <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
                     <?php
                           $startDate = new DateTime($group['StartDate']);           
                           $day = date("l", $startDate->getTimeStamp());
@@ -67,23 +70,26 @@
                           echo '</table>';
                       ?>
                 </div>
+                <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                 <div class="card-footer">
-                    <button class="btn btn-outline-success">Submit Times</button>
+                    <button class="btn btn-success float-r">Finalize Times</button>
                 </div>
+                <?php } ?>
+                <?php } ?>
             </div>
             
-            <div class="col card card-inverse border border-secondary rounded m-1"  style="height: 500px;">
-                <div class="card-body">
-                    <ul class="list-group list-group-flush scroller" id="scroll" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+            <div class="col card card-inverse border border-secondary rounded m-1"  style="max-height: 700px;">
+                <div class="card-body m-1 mt-5" style="overflow-y: scroll; overflow-x: hidden;">
+                    <ul class="list-group list-group-flush" id="scroll">
                        
                     </ul>
                 </div>
                 <div class="card-footer">
                     <div class="input-group">
                         <input id="text-content" type="text" class="form-control input-sm" placeholder="Type your message here...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" id="send-chat">Send</button>
-                        </span>
+                        <div class="input-group-btn input-group-append">
+                            <button class="btn btn-success" id="send-chat" type="submit">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>

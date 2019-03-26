@@ -49,7 +49,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-8 ml-auto">
                                             <input type="text" id="email" class="form-control" placeholder="update"> 
-                                            <div class="input-group-append">
+                                            <div class="input-group-btn input-group-append">
                                                 <button type="submit" name="change-email" id="change-email" class="btn btn-primary">Update</button>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-8 ml-auto">
                                             <input type="text" id="affiliation" class="form-control" placeholder="update"> 
-                                            <div class="input-group-append">
+                                            <div class="input-group-btn input-group-append">
                                                 <button type="submit" name="change-affiliation" id="change-affiliation" class="btn btn-primary">Update</button>
                                             </div>
                                         </div>

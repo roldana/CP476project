@@ -87,10 +87,14 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
             <a class="nav-link" href="<?php echo $prefix; ?>info.php">About Calendar</a>
             <a class="nav-link" href="<?php echo $prefix; ?>contact.php">Contact Us</a>              
             <form class="navbar-form form-inline" action="<?php echo $prefix; ?>group-list.php" method="GET">
-              <div class="form-group float-l">
-                <input type="text" class="form-control mr-sm-2" name="search" placeholder="Search for a group">
+              <div class="form-group mr-1">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search for a group">
+                    <div class="input-group-btn input-group-append">
+                        <button type="submit" class="btn btn-outline-success">Search</button>
+                    </div>
+                </div>
               </div>
-              <button type="submit" class="btn btn-outline-success">Search</button>
             </form>
             <a class="nav-link btn btn-danger text-white m-1" href="<?php echo $prefix."functions/"; ?>logout.php">Logout</a>
         </div>

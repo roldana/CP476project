@@ -18,7 +18,7 @@
                     </div>
                     <div class="input-group col">
                         <input type="text" class="form-control" id="input-search" placeholder="search for a group">
-                        <div class="input-group-append">
+                        <div class="input-group-btn input-group-append">
                             <button class="btn btn-outline-success" id="search" type="button">Search</button>
                         </div>
                     </div>
