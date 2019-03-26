@@ -66,7 +66,7 @@ CREATE TABLE `ChatMessages` (
 
 CREATE TABLE `Sheets` (
     `GroupID` INT NOT NULL,
-    `Cell`  INT NOT NULL,
+    `Cell`  VARCHAR(4) NOT NULL,
     `UserID` INT NOT NULL,
     PRIMARY KEY (`GroupID`, `Cell`, `UserID`)
 )  ENGINE=innodb DEFAULT CHARSET=utf8;
