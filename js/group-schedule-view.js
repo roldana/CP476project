@@ -15,6 +15,10 @@ $(document).ready(function(){
             $('#text-content').val('');
         }
     });
+    
+    $('table').bind('selectstart', function(event) {
+        event.preventDefault();
+    });
 
     function loadMessages(view = '') {
         var change = false;
