@@ -62,7 +62,7 @@
                           for ($i = 0; $i < sizeof($timeslots); $i++) {
                               echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
                               for ($j = 0; $j < 7; $j++) {
-                                  echo '<td class="clickable text-center" id="'.$i."-".$j.'">text</td>';
+                                  echo '<td class="clickable text-center" id="'.$i."-".$j.'"></td>';
                               }
                               echo '</tr>'; 
                           }

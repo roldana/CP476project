@@ -315,6 +315,12 @@ function retreiveCellCounts($db, $GroupID, $Cell) {
     return $sth->fetch(PDO::FETCH_ASSOC);
 }
 
+function retreiveGroupTotalUsers($db, $GroupID) {
+    $sth = $db->prepare('SELECT COUNT(*) FROM GroupUsers WHERE GroupID = ?;');
+    $sth->execute(array($GroupID));
+    return $sth->fetch(PDO::FETCH_ASSOC);
+}
+
 function errorHandler($errorString) {
     header("Location: error.php?error=".$errorString);
 }

@@ -20,6 +20,46 @@ $(document).ready(function(){
         event.preventDefault();
     });
 
+    function updateTimeSheet(get, update, remove, cell) {
+        $.ajax({
+            url:"ajax/sheet.php",
+            method:"POST",
+            data:{GroupID: $('#group-id').val(), get:get, update:update, remove:remove, cell:cell},
+            dataType:"json",
+            success:function(data) {
+                if (cell != '') {
+                    $('#'+cell).html(data.count + ' of ' +  data.total);
+                }
+                if (get != '') {
+                    data.get.forEach(function(element) {
+                        $('#' + element.Cell).addClass('bg-success');
+                        $('#' + element.Cell).addClass('text-white');
+                    });
+                }
+                if (update != '' && data.update) {
+                    $('#' + cell).addClass('bg-success');
+                    $('#' + cell).addClass('text-white');
+                }
+                if (remove != '' && data.remove) {
+                    $('#' + cell).removeClass('bg-success');
+                    $('#' + cell).removeClass('text-white');
+                }
+            },
+            error: function (data) { 
+                console.log(data); 
+            }
+        });
+    }
+    
+    updateTimeSheet('g','','','');
+    
+    var i, j;
+    for (i = 0; i < 32; i++) {
+        for (j = 0; j < 7; j++) {
+            updateTimeSheet('','','',i + "-" +j);
+        }
+    }
+    
     function loadMessages(view = '') {
         var change = false;
         $.ajax({
@@ -77,13 +117,11 @@ scrollTop: $('#scroll').get(0).scrollHeight}, 2000);
     $('.clickable').mousedown(function() {
         if ($(this).hasClass('bg-success')) {
             //remove this time from db
-            $(this).removeClass('bg-success');
-            $(this).removeClass('text-white');
+            updateTimeSheet('','','g',this.id);
         }
         else {
             //insert this time to db
-            $(this).addClass('bg-success');
-            $(this).addClass('text-white');
+            updateTimeSheet('','g','',this.id);
         }
     });
     

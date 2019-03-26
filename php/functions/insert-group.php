@@ -15,7 +15,7 @@
 
     
     
-    if (($pass1 != $pass2) or ($endDate < $startDate)) {
+    if ($pass1 != $pass2) {
         header("Location: ../create-group.php?err=True");
     }
     
