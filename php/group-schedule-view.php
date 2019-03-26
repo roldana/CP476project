@@ -47,7 +47,7 @@
                           $startDate = new DateTime($group['StartDate']);           
                           $day = date("l", $startDate->getTimeStamp());
                           //echo $day;
-                          echo '<table class="table table-bordered">
+                          echo '<table class="table table-bordered" id="table">
                                     <thead>
                                         <tr>
                                             <th scope="col" style="width: 12.5%;"></th>';
@@ -62,7 +62,7 @@
                           for ($i = 0; $i < sizeof($timeslots); $i++) {
                               echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
                               for ($j = 0; $j < 7; $j++) {
-                                  echo '<td></td>';
+                                  echo '<td class="clickable"></td>';
                               }
                               echo '</tr>'; 
                           }
@@ -79,8 +79,8 @@
             </div>
             
             <div class="col card card-inverse border border-secondary rounded m-1"  style="max-height: 700px;">
-                <div class="card-body m-1 mt-5" style="overflow-y: scroll; overflow-x: hidden;">
-                    <ul class="list-group list-group-flush" id="scroll">
+                <div class="card-body m-1 mt-5" id="scroll" style="overflow-y: scroll; overflow-x: hidden;">
+                    <ul class="list-group list-group-flush">
                        
                     </ul>
                 </div>

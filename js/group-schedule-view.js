@@ -1,5 +1,20 @@
 $(document).ready(function(){
 
+    let trigger = false;
+    document.addEventListener('mousedown', function(){
+        trigger = true;
+    });
+
+    document.addEventListener('mouseup', function(){
+        trigger = false;
+    });
+
+    $("#text-content").keyup(function (e) {
+        if (e.which == 13) {
+            $('#send-chat').trigger('click');
+        }
+    });
+
     function loadMessages(view = '') {
         var change = false;
         $.ajax({
@@ -45,6 +60,25 @@ scrollTop: $('#scroll').get(0).scrollHeight}, 2000);
             .always(function() {
             //do nothing
             });
+        }
+    });;
+    
+    $('.clickable').mouseenter(function() {
+        if (trigger) {
+            $(this).trigger('mousedown');
+        }
+    });
+    
+    $('.clickable').mousedown(function() {
+        if ($(this).hasClass('bg-success')) {
+            //remove this time from db
+            $(this).removeClass('bg-success');
+            $(this).removeClass('text-white');
+        }
+        else {
+            //insert this time to db
+            $(this).addClass('bg-success');
+            $(this).addClass('text-white');
         }
     });
     

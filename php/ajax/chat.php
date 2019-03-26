@@ -50,7 +50,7 @@
                 }
             }
             if ($output == '') {
-                $output .= '<li class="m-5" style="list-style-type: none;"><h4 class="font-weight-bold">Start Chatting!</h4></li>';
+                $output .= '<listyle="list-style-type: none;"><h4 class="font-weight-bold">Start Chatting!</h4></li>';
             }
         }
         
