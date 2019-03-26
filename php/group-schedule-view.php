@@ -30,16 +30,16 @@
 
 <div class="content-wrap">
     
-    <div class="container-fluid">
+    <div class="container-fluid m-1">
         <div class="group-row">
             <h1><?php echo $group['GroupName']; ?></h1> </br>
         </div>
         <div class="row">
-            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded" style="height: 500px;">
+            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded m-1" style="height: 500px;">
                 <div class="card-header">
                     <h4><?php echo $group['Description']; ?></h4>
                 </div>
-                <div class="card-body table-responsive mt-none" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+                <div class="card-body table-responsive" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
                     <?php
                           $startDate = new DateTime($group['StartDate']);           
                           $day = date("l", $startDate->getTimeStamp());
@@ -72,9 +72,9 @@
                 </div>
             </div>
             
-            <div class="card card-inverse ml-2 col border border-secondary rounded"  style="height: 500px;">
+            <div class="col card card-inverse border border-secondary rounded m-1"  style="height: 500px;">
                 <div class="card-body">
-                    <ul class="list-group list-group-flush" id="scroll" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
+                    <ul class="list-group list-group-flush scroller" id="scroll" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden;">
                        
                     </ul>
                 </div>
@@ -117,8 +117,8 @@
      This part will be procedurally generated with php when implemented in the final application
           !!!!!!! -->
 
-    <div class="container-fluid">
-        <div class="row mt-2">
+    <div class="container-fluid m-1">
+        <div class="row">
             
             <div id="map" class="col border border-secondary rounded" style="width:100%; height:500px;"></div>
             <script>
