@@ -71,7 +71,7 @@
                 <p id="bad-body" class="text-danger font-weight-bold d-none">Must include text in the message body!</p>
                 <div class="md-form mb-1">
                     <label for="to" class="font-weight-bold">Send to:</label>
-                    <input type="email" id="to" class="form-control">
+                    <input type="text" id="to" class="form-control">
                 </div>
                 <div class="md-form mb-1">
                     <label for="subject" class="font-weight-bold">Subject:</label>

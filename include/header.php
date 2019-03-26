@@ -74,7 +74,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Account
-                    <span class="badge badge-success count"></span>
+                    <span class="badge badge-success count" id="count"></span>
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="<?php echo $prefix; ?>account.php">My Account</a>

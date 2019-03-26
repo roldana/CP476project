@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     function loadMessages(view = 'g') {
         $.ajax({
             url:"ajax/get-messages.php",
@@ -83,4 +84,11 @@ $(document).ready(function(){
         //do nothing
         });
     }
+    
+    // load new messages
+    setInterval(function(){ 
+        if ($('#count').html() != "") {
+            loadMessages();
+        };
+    }, 1000);
 });
