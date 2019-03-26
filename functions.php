@@ -284,6 +284,37 @@ function updateUser($db, $data, $UserName) {
     return true;
 }
 
+function deleteUserTime($db, $GroupID, $Cell, $UserID) {
+    $sql = "DELETE FROM Sheets WHERE GroupID = ? AND Cell = ? AND UserID = ?;";
+    return $db->prepare($sql)->execute([$GroupID, $Cell, $UserID]);
+}
+
+function insertUserTime($db, $GroupID, $Cell, $UserID) {
+    try { 
+        $sql = "INSERT INTO Sheets (GroupID, Cell, UserID) VALUES (?, ?, ?);";
+        
+        if (!($db->prepare($sql)->execute([$GroupID, $Cell, $UserID]))) {
+            return False;
+        }
+    }
+    catch (Exception $e) {
+        return False;
+    }
+    return True;
+}
+
+function retreiveUserCells($db, $GroupID, $UserID) {
+    $sth = $db->prepare('SELECT * FROM Sheets WHERE GroupID = ? AND UserID = ?;');
+    $sth->execute(array($GroupID, $UserID));
+    return $sth->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function retreiveCellCounts($db, $GroupID, $Cell) {
+    $sth = $db->prepare('SELECT COUNT(*) FROM Sheets WHERE GroupID = ? AND Cell = ?;');
+    $sth->execute(array($GroupID, $Cell));
+    return $sth->fetch(PDO::FETCH_ASSOC);
+}
+
 function errorHandler($errorString) {
     header("Location: error.php?error=".$errorString);
 }

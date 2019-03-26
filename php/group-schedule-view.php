@@ -52,7 +52,7 @@
                                         <tr>
                                             <th scope="col" style="width: 12.5%;"></th>';
                           for ($i = 0; $i < 7; $i++) {
-                              echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
+                              echo '<th class="text-center" scope="col" style="width: 12.5%;">'.$day.'</th>';
                               $startDate->modify('+1 day');
                               $day = date("l", $startDate->getTimeStamp());
                           }
@@ -62,7 +62,7 @@
                           for ($i = 0; $i < sizeof($timeslots); $i++) {
                               echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
                               for ($j = 0; $j < 7; $j++) {
-                                  echo '<td class="clickable"></td>';
+                                  echo '<td class="clickable text-center" id="'.$i."-".$j.'">text</td>';
                               }
                               echo '</tr>'; 
                           }

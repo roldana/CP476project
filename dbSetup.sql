@@ -64,6 +64,13 @@ CREATE TABLE `ChatMessages` (
     PRIMARY KEY (`UserID`, `MsgDate`)
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
+CREATE TABLE `Sheets` (
+    `GroupID` INT NOT NULL,
+    `Cell`  INT NOT NULL,
+    `UserID` INT NOT NULL,
+    PRIMARY KEY (`GroupID`, `Cell`, `UserID`)
+)  ENGINE=innodb DEFAULT CHARSET=utf8;
+
 ALTER TABLE `Groups` ADD CONSTRAINT `Groups_fk0` FOREIGN KEY (`AdminID`) REFERENCES `Users`(`UserID`);
 
 ALTER TABLE `GroupUsers` ADD CONSTRAINT `GroupUsers_fk0` FOREIGN KEY (`GroupID`) REFERENCES `Groups`(`GroupID`) ON DELETE CASCADE;
@@ -77,6 +84,9 @@ ALTER TABLE `ChatIdentifier` ADD CONSTRAINT `ChatIdentifier_fk0` FOREIGN KEY (`G
 ALTER TABLE `ChatMessages` ADD CONSTRAINT `ChatMessages_fk0` FOREIGN KEY (`UserID`) REFERENCES `Users`(`UserID`) ON DELETE CASCADE;
 ALTER TABLE `ChatMessages` ADD CONSTRAINT `ChatMessages_fk1` FOREIGN KEY (`GroupID`) REFERENCES `Groups`(`GroupID`) ON DELETE CASCADE;
 
+ALTER TABLE `Sheets` ADD CONSTRAINT `Sheets_fk0` FOREIGN KEY (`UserID`) REFERENCES `Users`(`UserID`) ON DELETE CASCADE;
+ALTER TABLE `Sheets` ADD CONSTRAINT `Sheets_fk1` FOREIGN KEY (`GroupID`) REFERENCES `Groups`(`GroupID`) ON DELETE CASCADE;
+
 /*LEAVE AT LEAST THE FIRST 'Calendar' USER - USED TO SEND MESSAGES FROM SYSTEM TO USERS*/
 INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (0, "Calendar", "youwontevergetthishash", "system@system", "system");
 /*Password = password*/
@@ -89,4 +99,11 @@ INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody) VALUES (2,
 INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody) VALUES (3, 1, 0, "0", "test subject #4", "Test message body #4. sdfjkhskdjfh sdfhjks dfhjksdf sdfjkhsdf ");
 INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody) VALUES (4, 1, 0, "0", "test subject #5", "Test message body #5. sdfjkhskdjfh sdfhjks dfhjksdf sdfjkhsdf ");
 
+INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, Lat, Lng) VALUES (0, 1, "Name Goes Here", "Description Goes Here", "youwontevergetthishash", 0, 604800, 41, -80);
+INSERT INTO GroupUsers (GroupID, UserID) VALUES (0, 1);
+INSERT INTO ChatIdentifier (GroupID) VALUES (0);
+INSERT INTO Sheets (GroupID, Cell, UserID) VALUES (0, "1-1", 1);
+INSERT INTO Sheets (GroupID, Cell, UserID) VALUES (0, "0-0", 1);
+INSERT INTO Sheets (GroupID, Cell, UserID) VALUES (0, "2-1", 1);
+INSERT INTO Sheets (GroupID, Cell, UserID) VALUES (0, "3-1", 1);
 
