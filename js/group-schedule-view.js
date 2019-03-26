@@ -12,6 +12,7 @@ $(document).ready(function(){
     $("#text-content").keyup(function (e) {
         if (e.which == 13) {
             $('#send-chat').trigger('click');
+            $('#text-content').val('');
         }
     });
 
