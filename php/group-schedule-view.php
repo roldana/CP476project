@@ -1,6 +1,6 @@
 <?php include("../include/header.php"); 
 
-    $timeslots = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', '4:00', '4:30', '5:00', '5:30', '6:00', '6:30', '7:00', '7:30', '8:00', '8:30','9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00'];
+    $timeslots = ['8:00AM', '8:30AM', '9:00AM', '9:30AM', '10:00AM', '10:30AM', '11:00AM', '11:30AM', '12:00PM', '12:30PM', '1:00PM', '1:30PM', '2:00PM', '2:30PM', '3:00PM', '3:30PM', '4:00PM', '4:30PM', '5:00PM', '5:30PM', '6:00PM', '6:30PM', '7:00PM', '7:30PM', '8:00PM', '8:30PM','9:00PM', '9:30PM', '10:00PM', '10:30PM', '11:00PM', '11:30PM'];
 
     if(!isset($_SESSION)) { 
         session_start(); 
@@ -35,11 +35,11 @@
             <h1><?php echo $group['GroupName']; ?></h1> </br>
         </div>
         <div class="row">
-            <div class="col-md-9 card card-inverse bg-light border border-secondary rounded" style="height: 500px;">
+            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded" style="height: 500px;">
                 <div class="card-header">
                     <h4><?php echo $group['Description']; ?></h4>
                 </div>
-                <div class="card-body mt-none" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+                <div class="card-body table-responsive mt-none" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
                     <?php
                           $startDate = new DateTime($group['StartDate']);           
                           $day = date("l", $startDate->getTimeStamp());
@@ -57,7 +57,7 @@
                                     </thead>
                                     <tbody>';
                           for ($i = 0; $i < sizeof($timeslots); $i++) {
-                              echo '<tr><th scope="row" style="width: 12.5%;">'.$timeslots[$i].'</th>';
+                              echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
                               for ($j = 0; $j < 7; $j++) {
                                   echo '<td></td>';
                               }

@@ -1,5 +1,7 @@
 <?php
     include("../include/header.php");
+    
+    date_default_timezone_set('America/Toronto');
 ?>
 
 <script type="text/javascript" src="../js/account.js"></script>
