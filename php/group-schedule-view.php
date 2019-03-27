@@ -77,8 +77,8 @@
                     </div>
                     <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                     <div class="card-footer">
-                        <a href="calendar-view.php" target="_blank" class="btn btn-success float-r">Create Google Calendar Event</a>
-                        <button class="btn btn-success float-r">Finalize Times</button>
+                        <a href="calendar-view.php" target="_blank" class="btn btn-success float-r group-view-btn">Create Google Calendar Event</a>
+                        <button class="btn btn-success float-r group-view-btn">Finalize Times</button>
                     </div>
                     <?php } ?>
                     <?php } ?>

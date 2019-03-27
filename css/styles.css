@@ -475,3 +475,7 @@ button:hover {
   background-color: transparent; 
   border-color: rgba(255, 255, 255, 0.2); 
 } 
+
+.group-view-btn{
+  margin-left: 10px;
+}
