@@ -21,7 +21,7 @@
     $group = retreiveGroupByID($db, $_GET['GroupID']);
 ?>
 <script src="../js/group-schedule-view.js"></script>
-<script src="../js/calendar-events.js"></script>
+<!-- <script src="../js/calendar-events.js"></script> -->
 
 <input class="d-none" id="msg-count" value="">
 <input class="d-none" id="group-id" value="<?php echo $_GET['GroupID'];?>">
@@ -132,14 +132,49 @@
                 // Initialize and add the map
                 function initMap() {
                     // The location of group
+                    // var WLU = {lat: 43.4735, lng: -80.5273};
                     var groupLoc = {lat: <?php echo $group['Lat']; ?>, lng: <?php echo $group['Lng']; ?>};
-                    var mapOptions = {disableDefaultUI: true, zoom: 16, center: groupLoc}
+                    var mapOptions = {
+                        disableDefaultUI: true,
+                        zoom: 16,
+                        center: groupLoc
+                    }
                     // The map, centered at groupLoc
                     var map = new google.maps.Map(
                         document.getElementById('map'), mapOptions);
                     
                     // The marker, positioned at groupLoc
                     var marker = new google.maps.Marker({position: groupLoc, map: map});
+                    var markerWindow = new google.maps.InfoWindow({
+                        content: "Group location",
+                        maxWidth: 200
+                    });
+                    marker.addListener('click', () => {
+                        markerWindow.open(map, marker);
+                    });
+
+
+                    map.addListener('click', (event) => {
+                        let coordinates = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+                        var changeLoc = confirm("Change the group location?");
+                        if (changeLoc){
+                            //TODO update database location
+
+                            let newMarker = new google.maps.Marker({
+                                position: coordinates,
+                                map: map,
+                                title: "Group location"
+                            });
+                            var newMarkerWindow = new google.maps.InfoWindow({
+                                content: "Group location",
+                                maxWidth: 200
+                            });
+                            newMarker.addListener('click', () => {
+                                newMarkerWindow.open(map, newMarker);
+                            });
+                        }
+
+                    });
                 }
                 </script>
             </div>
