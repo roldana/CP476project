@@ -158,9 +158,10 @@
                         let coordinates = {lat: event.latLng.lat(), lng: event.latLng.lng()};
                         var changeLoc = confirm("Change the group location?");
                         if (changeLoc){
-                            //TODO update database location
-
-                            let newMarker = new google.maps.Marker({
+                            // deletes old marker
+                            marker.setMap(null);
+                            //TODO update database coords to new coordinates
+                            marker = new google.maps.Marker({
                                 position: coordinates,
                                 map: map,
                                 title: "Group location"
@@ -169,8 +170,8 @@
                                 content: "Group location",
                                 maxWidth: 200
                             });
-                            newMarker.addListener('click', () => {
-                                newMarkerWindow.open(map, newMarker);
+                            marker.addListener('click', () => {
+                                newMarkerWindow.open(map, marker);
                             });
                         }
 
