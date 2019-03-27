@@ -29,7 +29,7 @@
                     $output .= '<li class="row list-group-item">
                                     <div class="col-md-10">
                                         <p>
-                                            <strong>'.$message['UserName'].'</strong>
+                                            <strong>'.$message['UserName'].'</strong></br>
                                             <small>'.date("l jS \of F Y h:i ", $message["MsgDate"]).'</small>
                                         </p>
                                         <p>'.$message['Content'].'
@@ -40,8 +40,9 @@
                     $output .= '<li class="row list-group-item">
                                     <div class="col-md-10 ml-auto">
                                         <p class="text-right">
+                                            <strong>'.$message['UserName'].'</strong> </br>
                                             <small>'.date("l F jS h:i A", $message["MsgDate"]).'</small>
-                                            <strong>'.$message['UserName'].'</strong>
+
                                         </p>
                                         <p class="text-right">'.$message['Content'].'
                                         </p>

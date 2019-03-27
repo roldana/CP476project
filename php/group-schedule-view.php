@@ -33,11 +33,8 @@
     
     <div class="container-fluid m-1">
         <div class="row">
-            <h1 class="col-xl-6"><?php echo $group['GroupName']; ?></h1> </br>
+            <h1 class="col-xl-12"><?php echo $group['GroupName']; ?></h1> </br>
             
-        </div>
-        <div class="row">
-            <h4 class="col-xl-3"><?php echo $group['Description']; ?></h4>            
         </div>
         
         <div class="row">         
@@ -122,6 +119,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="row mt-4">
+            <h4 class="col-xl-8"><?php echo $group['Description']; ?></h4>            
         </div>
         
         <div class="row mt-4">

@@ -84,11 +84,10 @@ $(document).ready(function(){
         var pass = $(this).closest("li").find("input").val();
         var jqxhr = $.post("ajax/join-group.php", {GroupID: GroupID, Password: pass})
         .done(function(data) {
-            
             window.location.href = "group-schedule-view.php?GroupID="+GroupID;
         })
-        .fail(function() {
-            alert( "Error joining group. Try again later." );
+        .fail(function(data) {
+           //alert( "Error joining group. Try again later." );
         })
         .always(function() {
             //do nothing
@@ -97,7 +96,6 @@ $(document).ready(function(){
     
     $('#group-list').on('keyup', '.modal-in', function(e) {
         if (e.which == 13) {
-            console.log($(".modal-submit"));
             $(".modal-submit").trigger('click');
         }
     });
