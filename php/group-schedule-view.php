@@ -80,49 +80,11 @@
                     </div>
                     <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                     <div class="card-footer">
+                        <a href="calendar-view.php" target="_blank" class="btn btn-success float-r">Create Google Calendar Event</a>
                         <button class="btn btn-success float-r">Finalize Times</button>
                     </div>
                     <?php } ?>
                     <?php } ?>
-            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded m-1" style="height: 700px;">
-                <div class="card-header">
-                    <h4><?php echo $group['Description']; ?></h4>
-                </div>
-                
-                <?php if ($group['Status'] == 0) {?>
-                
-                <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
-                    <?php
-                          $startDate = new DateTime($group['StartDate']);           
-                          $day = date("l", $startDate->getTimeStamp());
-                          //echo $day;
-                          echo '<table class="table table-bordered" id="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" style="width: 12.5%;"></th>';
-                          for ($i = 0; $i < 7; $i++) {
-                              echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
-                              $startDate->modify('+1 day');
-                              $day = date("l", $startDate->getTimeStamp());
-                          }
-                          echo         '</tr>
-                                    </thead>
-                                    <tbody>';
-                          for ($i = 0; $i < sizeof($timeslots); $i++) {
-                              echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
-                              for ($j = 0; $j < 7; $j++) {
-                                  echo '<td class="clickable"></td>';
-                              }
-                              echo '</tr>'; 
-                          }
-                          echo     '</tbody>';
-                          echo '</table>';
-                      ?>
-                </div>
-                <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
-                <div class="card-footer">
-                    <a href="calendar-view.php" target="_blank" class="btn btn-success float-r">Create Google Calendar Event</a>
-                    <button class="btn btn-success float-r">Finalize Times</button>
                 </div>
             </div>
             
@@ -169,7 +131,7 @@
                 // Initialize and add the map
                 function initMap() {
                     // The location of group
-                    var groupLoc = {lat: <?php echo $group['Lat'];?>, lng: <?php echo $group['Lng'];?>};
+                    var groupLoc = {lat: <?php echo $group['Lat']; ?>, lng: <?php echo $group['Lng']; ?>};
                     var mapOptions = {disableDefaultUI: true, zoom: 16, center: groupLoc}
                     // The map, centered at groupLoc
                     var map = new google.maps.Map(
@@ -189,6 +151,5 @@
 <br>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB66pDOAGoYdLv3J8nk6oSD6OVjxPKsXb8&callback=initMap"></script>
-
 
 <?php include("../include/footer.php"); ?>
