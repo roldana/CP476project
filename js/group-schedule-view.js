@@ -111,6 +111,7 @@ scrollTop: $('#scroll').get(0).scrollHeight}, 2000);
         var GroupID = $("#group-id").val();
         var UserID = $("#user-id").val();
         var Content = $("#text-content").val();
+        $('#text-content').val('');
         
         if (Content != "") {            
             var jqxhr = $.post("ajax/insert-chat.php", {GroupID: GroupID, UserID: UserID, Content: Content})

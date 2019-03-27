@@ -127,6 +127,7 @@
         
         <div class="row mt-4">
             <div class="col-xl-12">
+                <p style="font-style: italic; float: right;">(click anywhere on the map to change the location)</p>
                 <div id="map" class="col border border-secondary rounded" style="width:100%; height:500px;"></div>
                 <script>
                 // Initialize and add the map
@@ -136,6 +137,7 @@
                     var groupLoc = {lat: <?php echo $group['Lat']; ?>, lng: <?php echo $group['Lng']; ?>};
                     var mapOptions = {
                         disableDefaultUI: true,
+                        zoomControl: true,
                         zoom: 16,
                         center: groupLoc
                     }
@@ -187,7 +189,6 @@
                             .always(function() {
                                 //
                             });
-
                         }
 
                     });
