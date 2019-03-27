@@ -92,7 +92,6 @@
                 'RRULE:FREQ=DAILY;COUNT=2'
             ],
             'attendees': [
-                {'email': 'infinitysquaredmusic@gmail.com'},
                 {'email': 'cp476project@gmail.com.com'}
             ],
             'reminders': {
