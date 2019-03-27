@@ -31,67 +31,114 @@
 <div class="content-wrap">
     
     <div class="container-fluid m-1">
-        <div class="group-row">
-            <h1><?php echo $group['GroupName']; ?></h1> </br>
+        <div class="row">
+            <h1 class="col-xl-6"><?php echo $group['GroupName']; ?></h1> </br>
+            
         </div>
         <div class="row">
-            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded m-1" style="height: 700px;">
-                <div class="card-header">
-                    <h4><?php echo $group['Description']; ?></h4>
-                </div>
-                
-                <?php if ($group['Status'] == 0) {?>
-                
-                <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
-                    <?php
-                          $startDate = new DateTime($group['StartDate']);           
-                          $day = date("l", $startDate->getTimeStamp());
-                          //echo $day;
-                          echo '<table class="table table-bordered" id="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" style="width: 12.5%;"></th>';
-                          for ($i = 0; $i < 7; $i++) {
-                              echo '<th class="text-center" scope="col" style="width: 12.5%;">'.$day.'</th>';
-                              $startDate->modify('+1 day');
+            <h4 class="col-xl-3"><?php echo $group['Description']; ?></h4>            
+        </div>
+        
+        <div class="row">         
+        
+            <div class="col-xl-7">
+                <div class="card card-inverse bg-light border border-secondary rounded" style="height: 700px;">
+                    <div class="card-header">
+                        <h4>Select when you are available: </h4>
+                    </div>
+                    
+                    <?php if ($group['Status'] == 0) {?>
+                    
+                    <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
+                        <?php
+                              $startDate = new DateTime($group['StartDate']);           
                               $day = date("l", $startDate->getTimeStamp());
-                          }
-                          echo         '</tr>
-                                    </thead>
-                                    <tbody>';
-                          for ($i = 0; $i < sizeof($timeslots); $i++) {
-                              echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
-                              for ($j = 0; $j < 7; $j++) {
-                                  echo '<td class="clickable text-center" id="'.$i."-".$j.'"></td>';
+                              //echo $day;
+                              echo '<table class="table table-bordered" id="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="width: 12.5%;"></th>';
+                              for ($i = 0; $i < 7; $i++) {
+                                  echo '<th class="text-center" scope="col" style="width: 12.5%;">'.$day.'</th>';
+                                  $startDate->modify('+1 day');
+                                  $day = date("l", $startDate->getTimeStamp());
                               }
-                              echo '</tr>'; 
-                          }
-                          echo     '</tbody>';
-                          echo '</table>';
-                      ?>
+                              echo         '</tr>
+                                        </thead>
+                                        <tbody>';
+                              for ($i = 0; $i < sizeof($timeslots); $i++) {
+                                  echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
+                                  for ($j = 0; $j < 7; $j++) {
+                                      echo '<td class="clickable text-center" id="'.$i."-".$j.'"></td>';
+                                  }
+                                  echo '</tr>'; 
+                              }
+                              echo     '</tbody>';
+                              echo '</table>';
+                          ?>
+                    </div>
+                    <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
+                    <div class="card-footer">
+                        <button class="btn btn-success float-r">Finalize Times</button>
+                    </div>
+                    <?php } ?>
+                    <?php } ?>
                 </div>
-                <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
-                <div class="card-footer">
-                    <button class="btn btn-success float-r">Finalize Times</button>
-                </div>
-                <?php } ?>
-                <?php } ?>
             </div>
             
-            <div class="col card card-inverse border border-secondary rounded m-1"  style="max-height: 700px;">
-                <div class="card-body m-1 mt-5" id="scroll" style="overflow-y: scroll; overflow-x: hidden;">
-                    <ul class="list-group list-group-flush">
-                       
-                    </ul>
-                </div>
-                <div class="card-footer">
-                    <div class="input-group">
-                        <input id="text-content" type="text" class="form-control input-sm" placeholder="Type your message here...">
-                        <div class="input-group-btn input-group-append">
-                            <button class="btn btn-success" id="send-chat" type="submit">Send</button>
+            <div class="col-xl-2">
+                <div class="card card-inverse border border-secondary rounded"  style="height: 700px;">
+                    <div class="card-header">
+                        <h4>Last Selected Time:</h4>
+                        <p id="last-selected"></p>
+                    </div>
+                    <div class="card-body mx-3" style="overflow: hidden;">
+                        <div>
+                            <h5 class="font-weight-bold" id="selected"></h5>
+                            <ul class="list-group list-group-flush" id="users-selected">
+                           
+                            </ul>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="col-xl-3">
+                <div class="card card-inverse border border-secondary rounded"  style="height: 700px;">
+                    <div class="card-body m-3" id="scroll" style="overflow-y: scroll; overflow-x: hidden;">
+                        <ul class="list-group list-group-flush" id="chat-window">
+                           
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input id="text-content" type="text" class="form-control input-sm" placeholder="Type your message here...">
+                            <div class="input-group-btn input-group-append">
+                                <button class="btn btn-success" id="send-chat" type="submit">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-xl-12">
+                <div id="map" class="col border border-secondary rounded" style="width:100%; height:500px;"></div>
+                <script>
+                // Initialize and add the map
+                function initMap() {
+                    // The location of group
+                    var groupLoc = {lat: <?php echo $group['Lat'];?>, lng: <?php echo $group['Lng'];?>};
+                    var mapOptions = {disableDefaultUI: true, zoom: 16, center: groupLoc}
+                    // The map, centered at groupLoc
+                    var map = new google.maps.Map(
+                        document.getElementById('map'), mapOptions);
+                    
+                    // The marker, positioned at groupLoc
+                    var marker = new google.maps.Marker({position: groupLoc, map: map});
+                }
+                </script>
             </div>
         </div>
     </div>
@@ -123,26 +170,6 @@
      This part will be procedurally generated with php when implemented in the final application
           !!!!!!! -->
 
-    <div class="container-fluid m-1">
-        <div class="row">
-            
-            <div id="map" class="col border border-secondary rounded" style="width:100%; height:500px;"></div>
-            <script>
-            // Initialize and add the map
-            function initMap() {
-                // The location of group
-                var groupLoc = {lat: <?php echo $group['Lat'];?>, lng: <?php echo $group['Lng'];?>};
-                var mapOptions = {disableDefaultUI: true, zoom: 16, center: groupLoc}
-                // The map, centered at groupLoc
-                var map = new google.maps.Map(
-                    document.getElementById('map'), mapOptions);
-                
-                // The marker, positioned at groupLoc
-                var marker = new google.maps.Marker({position: groupLoc, map: map});
-            }
-            </script>
-        </div>
-    </div>
 </div>
 
 </div>

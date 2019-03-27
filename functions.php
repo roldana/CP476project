@@ -280,7 +280,7 @@ function updateUser($db, $data, $UserName) {
         errorHandler($e->getMessage());
     }
     
-    sendMessage($db, $Username, "0", "Your account details have changed.", "Your account details have changed. Check them on the Account page to verify the information is correct.");
+    sendMessage($db, $UserName, "0", "Your account details have changed.", "Your account details have changed. Check them on the Account page to verify the information is correct.");
     return true;
 }
 
@@ -313,6 +313,12 @@ function retreiveCellCounts($db, $GroupID, $Cell) {
     $sth = $db->prepare('SELECT COUNT(*) FROM Sheets WHERE GroupID = ? AND Cell = ?;');
     $sth->execute(array($GroupID, $Cell));
     return $sth->fetch(PDO::FETCH_ASSOC);
+}
+
+function retreiveUsersCell($db, $GroupID, $Cell) {
+    $sth = $db->prepare('SELECT * FROM Sheets JOIN Users ON Users.UserID = Sheets.UserID WHERE GroupID = ? AND Cell = ?;');
+    $sth->execute(array($GroupID, $Cell));
+    return $sth->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function retreiveGroupTotalUsers($db, $GroupID) {

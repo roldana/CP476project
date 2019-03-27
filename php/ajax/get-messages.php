@@ -1,6 +1,8 @@
 <?php
     session_start();
     include_once("../../functions.php");
+
+    date_default_timezone_set('America/Toronto');
   
     //if $_POST['view'] != '' -> Return list of html elements containing each element
     //                        -> Then make sure those elements are set to 'seen' in db (`stastus` = 1)

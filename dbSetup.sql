@@ -99,7 +99,7 @@ INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody) VALUES (2,
 INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody) VALUES (3, 1, 0, "0", "test subject #4", "Test message body #4. sdfjkhskdjfh sdfhjks dfhjksdf sdfjkhsdf ");
 INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody) VALUES (4, 1, 0, "0", "test subject #5", "Test message body #5. sdfjkhskdjfh sdfhjks dfhjksdf sdfjkhsdf ");
 
-INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, Lat, Lng) VALUES (0, 1, "Name Goes Here", "Description Goes Here", "youwontevergetthishash", 0, 604800, 41, -80);
+INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, Lat, Lng) VALUES (0, 1, "Name Goes Here", "Description Goes Here", "$2y$10$7L.e35e5Z89GnAbANGv2tuUhEi/nnWjIs3Kd9f.R4NlL4VtF7TYny", 0, 604800, 41, -80);
 INSERT INTO GroupUsers (GroupID, UserID) VALUES (0, 1);
 INSERT INTO ChatIdentifier (GroupID) VALUES (0);
 INSERT INTO Sheets (GroupID, Cell, UserID) VALUES (0, "1-1", 1);

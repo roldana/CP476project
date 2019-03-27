@@ -16,6 +16,7 @@
     $remove = false;
     $get = "";
     $cell = "";
+    $users = "";
     $count = 0;
     $total = 0;
     
@@ -39,7 +40,17 @@
         $total = retreiveGroupTotalUsers($db, $_REQUEST['GroupID']);
     }
     
-    $data = Array('update' => $update, 'remove' => $remove, 'get' => $get, 'cell' =>  $cell, 'count' => $count['COUNT(*)'], 'total' => $total['COUNT(*)']);
+    if (isset($_REQUEST['cell'])  and $_REQUEST['cell'] != '' and isset($_REQUEST['users']) and $_REQUEST['users'] != '') {
+        $getUsers = retreiveUsersCell($db, $_REQUEST['GroupID'], $_REQUEST['cell']);
+        foreach($getUsers as $user) {
+            $users .= '<li class="list-group-item"><p class="">'.$user['UserName'].'</p></li>';
+        }
+        if ($users == '') {
+            $users .= '<li class="list-group-item"><p class="font-weight-bold">No one has selected this time!</p></li>';
+        }
+    }
+    
+    $data = Array('update' => $update, 'remove' => $remove, 'get' => $get, 'cell' =>  $cell, 'count' => $count['COUNT(*)'], 'total' => $total['COUNT(*)'], 'users' => $users);
     
     //print_r ($get);
     echo json_encode($data);

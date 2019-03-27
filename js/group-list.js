@@ -58,7 +58,7 @@ $(document).ready(function(){
                 //modal content
                 str = str + "<div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title\">"+element.GroupName+"</h4><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button></div>";
                 str = str + "<div class=\"modal-body\"><p>Please enter the password: </p>";
-                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control\" placeholder=\"password\"><div class=\"input-group-btn input-group-append\"><button class=\"btn btn-outline-success modal-submit\" type=\"button\">Join</button></div></div></div>";
+                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control modal-in\" placeholder=\"password\"><div class=\"input-group-btn input-group-append\"><button class=\"btn btn-outline-success modal-submit\" type=\"button\">Join</button></div></div></div>";
                 str = str + "<div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button></div>";
                 str= str + "</div></div></div>";
                 str=str+"</li>";
@@ -82,7 +82,6 @@ $(document).ready(function(){
     $('#group-list').on('click', '.modal-submit', function() {
         var GroupID = $(this).closest("li").data("GroupID");     
         var pass = $(this).closest("li").find("input").val();
-        alert();
         var jqxhr = $.post("ajax/join-group.php", {GroupID: GroupID, Password: pass})
         .done(function(data) {
             
@@ -94,6 +93,13 @@ $(document).ready(function(){
         .always(function() {
             //do nothing
         });
+    });
+    
+    $('#group-list').on('keyup', '.modal-in', function(e) {
+        if (e.which == 13) {
+            console.log($(".modal-submit"));
+            $(".modal-submit").trigger('click');
+        }
     });
     
     var term = getQueryVariable("search"); 

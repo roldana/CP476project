@@ -1,4 +1,5 @@
 var total = 0;
+var timeslots = ['8:00AM', '8:30AM', '9:00AM', '9:30AM', '10:00AM', '10:30AM', '11:00AM', '11:30AM', '12:00PM', '12:30PM', '1:00PM', '1:30PM', '2:00PM', '2:30PM', '3:00PM', '3:30PM', '4:00PM', '4:30PM', '5:00PM', '5:30PM', '6:00PM', '6:30PM', '7:00PM', '7:30PM', '8:00PM', '8:30PM','9:00PM', '9:30PM', '10:00PM', '10:30PM', '11:00PM', '11:30PM'];
 
 $(document).ready(function(){
 
@@ -22,11 +23,11 @@ $(document).ready(function(){
         event.preventDefault();
     });
 
-    function updateTimeSheet(get, update, remove, cell) {
+    function updateTimeSheet(get, update, remove, cell, users='') {
         $.ajax({
             url:"ajax/sheet.php",
             method:"POST",
-            data:{GroupID: $('#group-id').val(), get:get, update:update, remove:remove, cell:cell},
+            data:{GroupID: $('#group-id').val(), get:get, update:update, remove:remove, cell:cell, users:users},
             dataType:"json",
             success:function(data) {
                 if (cell != '') {
@@ -49,6 +50,14 @@ $(document).ready(function(){
                 if (remove != '' && data.remove) {
                     $('#' + cell).removeClass('bg-success');
                     $('#' + cell).removeClass('text-white');
+                }
+                if (users != '') {
+                    $('#users-selected').html(data.users);
+                    if (data.count > 0) {
+                        $('#selected').html('The following users ('+data.count+ ' of '+data.total+') have selected this time: ');
+                    } else {
+                        $('#selected').html('');
+                    }
                 }
             },
             error: function (data) { 
@@ -80,7 +89,7 @@ $(document).ready(function(){
             success:function(data) {
                 
                 if (view != '') {
-                    $('.list-group').html(data.output);                 
+                    $('#chat-window').html(data.output);                 
                 }
                 if(data.messageCount != $('#msg-count').val()) {
                     $('#msg-count').val(data.messageCount);
@@ -122,6 +131,13 @@ scrollTop: $('#scroll').get(0).scrollHeight}, 2000);
         if (trigger) {
             $(this).trigger('mousedown');
         }
+    });
+    
+    $('table').on('mouseup', '.clickable', function(e) {  
+        var day = e.delegateTarget.tHead.rows[0].cells[this.cellIndex],
+        time = this.parentNode.cells[0];
+        $('#last-selected').html($(day).text()+", "+$(time).text());
+        updateTimeSheet('','','',timeslots.indexOf($(time).text())+"-"+(this.cellIndex-1),'g');
     });
     
     $('.clickable').mousedown(function() {
