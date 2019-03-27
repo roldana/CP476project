@@ -160,19 +160,34 @@
                         if (changeLoc){
                             // deletes old marker
                             marker.setMap(null);
-                            //TODO update database coords to new coordinates
-                            marker = new google.maps.Marker({
-                                position: coordinates,
-                                map: map,
-                                title: "Group location"
+
+                            var jqxhr = $.post("ajax/update-group-loc.php", {
+                                Latitude: event.latLng.lat(),
+                                Longitude: event.latLng.lng(),
+                                GroupID: $("#group-id").val()
+                            })
+                            .done(function(data) {
+                                console.log("group location updated successfully");
+                                marker = new google.maps.Marker({
+                                    position: coordinates,
+                                    map: map,
+                                    title: "Group location"
+                                });
+                                var newMarkerWindow = new google.maps.InfoWindow({
+                                    content: "Group location",
+                                    maxWidth: 200
+                                });
+                                marker.addListener('click', () => {
+                                    newMarkerWindow.open(map, marker);
+                                });        
+                            })
+                            .fail(function() {
+                                alert( "An error ocurred while updating the location. Try again later" );
+                            })
+                            .always(function() {
+                                //
                             });
-                            var newMarkerWindow = new google.maps.InfoWindow({
-                                content: "Group location",
-                                maxWidth: 200
-                            });
-                            marker.addListener('click', () => {
-                                newMarkerWindow.open(map, marker);
-                            });
+
                         }
 
                     });

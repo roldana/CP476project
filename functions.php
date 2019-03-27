@@ -284,6 +284,20 @@ function updateUser($db, $data, $UserName) {
     return true;
 }
 
+function updateGroupLoc($db, $data) {
+    try {
+        $sql = "UPDATE Groups SET Lat = ?, Lng = ? WHERE GroupID = ?;";
+        if (!($db->prepare($sql)->execute([$data['Latitude'], $data['Longitude'], $data['GroupID']]))) {
+            return False;
+        }
+    }
+    catch(Exception $e) {
+        errorHandler($e->getMessage());
+    }
+    
+    return true;
+}
+
 function deleteUserTime($db, $GroupID, $Cell, $UserID) {
     $sql = "DELETE FROM Sheets WHERE GroupID = ? AND Cell = ? AND UserID = ?;";
     return $db->prepare($sql)->execute([$GroupID, $Cell, $UserID]);
