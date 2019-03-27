@@ -20,7 +20,8 @@
     
     $group = retreiveGroupByID($db, $_GET['GroupID']);
 ?>
-<script src="../js/group-schedule-view.js"></script> 
+<script src="../js/group-schedule-view.js"></script>
+<script src="../js/calendar-events.js"></script>
 
 <input class="d-none" id="msg-count" value="">
 <input class="d-none" id="group-id" value="<?php echo $_GET['GroupID'];?>">
@@ -59,7 +60,7 @@
                                             <tr>
                                                 <th scope="col" style="width: 12.5%;"></th>';
                               for ($i = 0; $i < 7; $i++) {
-                                  echo '<th class="text-center" scope="col" style="width: 12.5%;">'.$day.'</th>';
+                                  echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
                                   $startDate->modify('+1 day');
                                   $day = date("l", $startDate->getTimeStamp());
                               }
@@ -69,7 +70,7 @@
                               for ($i = 0; $i < sizeof($timeslots); $i++) {
                                   echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
                                   for ($j = 0; $j < 7; $j++) {
-                                      echo '<td class="clickable text-center" id="'.$i."-".$j.'"></td>';
+                                      echo '<td class="clickable" id="'.$i."-".$j.'"></td>';
                                   }
                                   echo '</tr>'; 
                               }
@@ -83,6 +84,45 @@
                     </div>
                     <?php } ?>
                     <?php } ?>
+            <div class="col-xl-9 card card-inverse bg-light border border-secondary rounded m-1" style="height: 700px;">
+                <div class="card-header">
+                    <h4><?php echo $group['Description']; ?></h4>
+                </div>
+                
+                <?php if ($group['Status'] == 0) {?>
+                
+                <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
+                    <?php
+                          $startDate = new DateTime($group['StartDate']);           
+                          $day = date("l", $startDate->getTimeStamp());
+                          //echo $day;
+                          echo '<table class="table table-bordered" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 12.5%;"></th>';
+                          for ($i = 0; $i < 7; $i++) {
+                              echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
+                              $startDate->modify('+1 day');
+                              $day = date("l", $startDate->getTimeStamp());
+                          }
+                          echo         '</tr>
+                                    </thead>
+                                    <tbody>';
+                          for ($i = 0; $i < sizeof($timeslots); $i++) {
+                              echo '<tr><th scope="row" class="text-right" style="width: 12.5%;">'.$timeslots[$i].'</th>';
+                              for ($j = 0; $j < 7; $j++) {
+                                  echo '<td class="clickable"></td>';
+                              }
+                              echo '</tr>'; 
+                          }
+                          echo     '</tbody>';
+                          echo '</table>';
+                      ?>
+                </div>
+                <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
+                <div class="card-footer">
+                    <a href="calendar-view.php" target="_blank" class="btn btn-success float-r">Create Google Calendar Event</a>
+                    <button class="btn btn-success float-r">Finalize Times</button>
                 </div>
             </div>
             
@@ -142,33 +182,6 @@
             </div>
         </div>
     </div>
-    
-    
-    <!--
-    <div class="viewButtonBox">
-
-        <div class="viewButton">
-            <button class="btn btn-primary btn-lg">
-                Week View
-            </button>
-        </div>
-
-        <div class="viewButton">
-            <button class="btn btn-primary btn-lg">
-                Month View
-            </button>
-        </div>
-
-        <div class="viewButton">
-            <a class="btn btn-primary btn-lg" href="calendar-view.php">
-                Google Calendar
-            </a>
-        </div>
-    </div>
-    -->
-    <!--  !!!!!!!
-     This part will be procedurally generated with php when implemented in the final application
-          !!!!!!! -->
 
 </div>
 
