@@ -77,8 +77,7 @@
                     </div>
                     <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                     <div class="card-footer">
-                        <a href="calendar-view.php" target="_blank" class="btn btn-success float-r group-view-btn">Create Google Calendar Event</a>
-                        <button class="btn btn-success float-r group-view-btn">Finalize Times</button>
+                        <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-success float-r group-view-btn">Finalize Group Time</a>
                     </div>
                     <?php } ?>
                     <?php } ?>
@@ -157,6 +156,7 @@
 
 
                     map.addListener('click', (event) => {
+                        <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                         let coordinates = {lat: event.latLng.lat(), lng: event.latLng.lng()};
                         var changeLoc = confirm("Change the group location?");
                         if (changeLoc){
@@ -190,6 +190,9 @@
                                 //
                             });
                         }
+                        <?php } else { ?>
+                        alert("You are not the group admin. Send a chat message to suggest a new location.");
+                        <?php } ?>
 
                     });
                 }

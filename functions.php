@@ -163,6 +163,17 @@ function verifyGroupUser($db, $UserID, $GroupID) {
     return False;
 }
 
+function verifyGroupAdmin($db, $UserID, $GroupID) {
+    $sql = "SELECT * FROM Groups WHERE GroupID = ? AND AdminID = ?;";
+    $sth = $db->prepare($sql);
+    $sth->execute([$GroupID, $UserID]);
+    $data = $sth->fetch();
+    if ($data) {
+        return True;
+    }
+    return False;
+}
+
 function leaveGroup($db, $UserID, $GroupID) {
     $sql = "DELETE FROM GroupUsers WHERE GroupID = ? AND UserID = ?;";
     if (!($db->prepare($sql)->execute([$GroupID, $UserID]))) {
