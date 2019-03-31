@@ -236,7 +236,7 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash,
     try {
         $db->beginTransaction();
         
-        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, Lat, Lng) VALUES (DEFAULT, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 7 DAY), ?, ?);";
+        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, FinalStart, FinalEnd, Lat, Lng, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 7 DAY), DEFAULT, DEFAULT, ?, ?, DEFAULT);";
         
         if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $startDate, $lat, $lng]))) {
             $db->rollBack();
@@ -353,7 +353,11 @@ function retreiveGroupTotalUsers($db, $GroupID) {
 }
 
 function errorHandler($errorString) {
-    header("Location: error.php?error=".$errorString);
+    if (strpos($a, 'are') == false) {
+        header("Location: ../error.php?error=".$errorString);
+    } else {
+        header("Location: error.php?error=".$errorString);
+    }
 }
 
 ?>

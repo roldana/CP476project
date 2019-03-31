@@ -27,6 +27,8 @@ CREATE TABLE `Groups` (
     `Password` VARCHAR(255) NOT NULL,
 	`StartDate` DATETIME NOT NULL,
 	`EndDate` DATETIME NOT NULL,
+    `FinalStart` INT DEFAULT NULL,
+    `FinalEnd` INT DEFAULT NULL,
     `Lat` FLOAT(12,8) NOT NULL,
     `Lng` FLOAT(12,8) NOT NULL,
     `Status` INT NOT NULL DEFAULT 0,
