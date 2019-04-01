@@ -19,10 +19,6 @@
     }
     
     $group = retreiveGroupByID($db, $_GET['GroupID']);
-    
-    if ($group['Status'] == 1) {
-        header("Location: group-schedule-view.php?GroupID=".$_GET['GroupID']);
-    }
 ?>
 <script src="../js/finalize-time.js"></script>
 
@@ -47,13 +43,11 @@
                         <h4>Finalize your group times: </h4>
                     </div>
                     
-                    <?php if ($group['Status'] == 0) {?>
-                    
                     <div class="card-body table-responsive" style=" overflow-y: scroll; overflow-x: hidden;">
                         <?php
                               $startDate = new DateTime();
                               $startDate->setTimeStamp($group['StartDate']);
-                              $day = date("l", $startDate->getTimeStamp());
+                              $day = date("l M j", $startDate->getTimeStamp());
                               //echo $day;
                               echo '<table class="table table-bordered" id="table">
                                         <thead>
@@ -62,7 +56,7 @@
                               for ($i = 0; $i < 7; $i++) {
                                   echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
                                   $startDate->modify('+1 day');
-                                  $day = date("l", $startDate->getTimeStamp());
+                                  $day = date("l M j", $startDate->getTimeStamp());
                               }
                               echo         '</tr>
                                         </thead>
@@ -81,12 +75,12 @@
                     <div class="card-footer">
                         <button id="submit-times" type="button" class="btn btn-success btn-lg float-r group-view-btn">Submit Times</button>
                     </div>
-                    <?php } ?>
+
                 </div>
             </div>
         </div>
         <br>
-        <iframe id="calFrame" style="display: none;" src="https://calendar.google.com/calendar/embed?src=cp476project%40gmail.com&ctz=America%2FToronto" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <iframe id="calFrame" style="display: none;" src="https://calendar.google.com/calendar/embed?src=cp476project%40gmail.com&ctz=America%2FToronto" style="border: 0" width="100%" height="800" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 </div>
@@ -139,6 +133,164 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
 
     console.log(emails);
 
+    //!!!!!!!!!!!!!!!!!!finalize-time.js shit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    var startTime = 28800;
+    var endTime = 28800;
+    var FinalStart = 0;
+    var FinalEnd = 0;
+    let trigger = false;
+    var valid = false;
+    
+    document.addEventListener('mousedown', function(){
+        trigger = true;
+    });
+
+    document.addEventListener('mouseup', function(){
+        trigger = false;
+    });
+
+    $("#text-content").keyup(function (e) {
+        if (e.which == 13) {
+            $('#send-chat').trigger('click');
+            $('#text-content').val('');
+        }
+    });
+    
+    $('table').bind('selectstart', function(event) {
+        event.preventDefault();
+    });
+    
+    function updateTimeSheet(get, update, remove, cell, users='') {
+        $.ajax({
+            url:"ajax/sheet.php",
+            method:"POST",
+            data:{GroupID: $('#group-id').val(), get:get, update:update, remove:remove, cell:cell, users:users},
+            dataType:"json",
+            success:function(data) {
+                if (cell != '') {
+                    $('#'+cell).html(data.count + ' of ' +  data.total);
+                    if (data.count == data.total) {
+                        $('#' + cell).removeClass('bg-secondary');
+                        $('#' + cell).removeClass('bg-success');
+                        $('#' + cell).addClass('bg-dark');
+                        $('#' + cell).addClass('text-white');
+                    } else if (data.count > 0) {
+                        $('#' + cell).removeClass('bg-dark');
+                        $('#' + cell).removeClass('bg-success');
+                        $('#' + cell).addClass('bg-secondary');
+                        $('#' + cell).addClass('text-white');
+                    } else {
+                        $('#' + cell).removeClass('bg-dark');
+                        $('#' + cell).removeClass('bg-secondary');
+                        $('#' + cell).removeClass('bg-success');
+                        $('#' + cell).removeClass('text-white');
+                    }
+                }  
+            }           
+        });
+    }
+        
+    updateTimeSheet('g','','','');
+    
+    function updateAllCells() {
+        var i, j;
+        for (i = 0; i < 32; i++) {
+            for (j = 0; j < 7; j++) {
+                updateTimeSheet('','','',i + "-" +j);
+            }
+        }
+    }
+    
+    updateAllCells();
+    
+     $('.clickable').mouseenter(function() {
+        if (trigger) {
+            checkCell(this.id);
+        }
+    });
+    
+    function checkCell(id) {
+        cell = $('#'+id);
+        if (cell.hasClass('bg-success')) {
+            updateTimeSheet('','','',id);
+        } else {
+            cell.removeClass('bg-secondary');
+            cell.removeClass('bg-dark');
+            cell.addClass('bg-success');
+            cell.addClass('text-white');
+        }
+    }
+    
+    $('table').on('mousedown', '.clickable', function(e) {  
+        checkCell(this.id);
+    });
+    
+    function validSheet () {
+        var valid = true;
+        var colFound = false;
+        var colDone = false;
+        var i, j;
+        
+        startTime = 28800;
+        
+        for (j = 0; j < 7; j++) {
+            for (i = 0; i < 32; i++) {
+                cell = $('#'+i+"-"+j);
+                if (colDone && cell.hasClass('bg-success')) {
+                    return false;
+                }
+                if (cell.hasClass('bg-success') && !colFound) {
+                    colFound = true;
+                    startTime = 28800 + (j * 86400) + (i * 1800);
+                }
+                if (colFound && !cell.hasClass('bg-success') && !colDone) {
+                    colDone = true;
+                    endTime = 28800 + (j * 86400) + (i * 1800);
+                }
+            }
+            if (colFound && !colDone) {
+                colDone = true;
+                endTime = 28800 + (j * 86400) + (32 * 1800);
+            }
+        }
+        
+        return (colFound && colDone);
+    }
+    
+    $('#submit-times').click(function () {
+
+        if (!validSheet()) {
+            alert('Verify only one meeting time has been selected.');   
+            valid = false;
+        }
+        else {
+            var start = parseInt($('#group-start').val());
+            
+            var begin = (start + startTime);
+            var end = (start + endTime);
+            
+            $.ajax({
+                url:"ajax/finalize.php",
+                method:"POST",
+                data:{GroupID: $('#group-id').val(), start:begin, end:end},
+                dataType:"text",
+                async: false,
+                success:function(data) {
+                    valid = true;
+                    FinalStart = begin;
+                    FinalEnd = end;
+                },
+                error:function(data) {
+                    valid = false;
+                    alert("An error has occurred, the group has not been created.");
+                }
+            });
+        }
+    });
+    
+    //!!!!!!!!!!!!!!!!!!finalize-time.js shit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     function handleClientLoad() {
         gapi.load('client:auth2', initClient);
     }
@@ -160,7 +312,7 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
     function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
             //signinMessage.style.display = 'none';
-            authorizeButton.style.display = 'none';
+            //authorizeButton.style.display = 'none';
             createEvent();
             calendarFrame.style.display = 'block';
         } else {
@@ -170,7 +322,9 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
     }
 
     function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
+        if (valid) { 
+            gapi.auth2.getAuthInstance().signIn();
+        } 
     }
 
     function handleSignoutClick(event) {
@@ -189,11 +343,12 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
             'summary': groupName + ' Meeting',
             'description': description,
             'start': {
-                'dateTime': '2019-03-31T09:00:00-07:00',
+                
+                'dateTime': ISODateString(new Date(FinalStart*1000)),
                 'timeZone': 'EST'
             },
             'end': {
-                'dateTime': '2019-03-31T17:00:00-07:00',
+                'dateTime': ISODateString(new Date(FinalEnd*1000)),
                 'timeZone': 'EST'
             },
             'attendees': emails,
@@ -206,6 +361,8 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
             }
         };
 
+        console.log(event);
+        
         var request = gapi.client.calendar.events.insert({
             'calendarId': 'primary',
             'resource': event
@@ -215,6 +372,18 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
 
         });
 
+    }
+    
+    function ISODateString(d){
+        function pad(n) {
+            return n<10 ? '0'+n : n
+        }
+        return d.getUTCFullYear()+'-'
+        + pad(d.getUTCMonth()+1)+'-'
+        + pad(d.getUTCDate())+'T'
+        + pad(d.getUTCHours())+':'
+        + pad(d.getUTCMinutes())+':'
+        + pad(d.getUTCSeconds())+'Z'
     }
 
 </script>
