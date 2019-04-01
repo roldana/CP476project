@@ -50,7 +50,7 @@
                     <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
                         <?php
                               $startDate = new DateTime();
-                              $startDate->setTimeStamp($group['StartDate']);
+                              $startDate->setTimeStamp(strtotime($group['StartDate']));
                               $day = date("l M j", $startDate->getTimeStamp());
                               //echo $day;
                               echo '<table class="table table-bordered" id="table">
