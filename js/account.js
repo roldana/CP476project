@@ -5,12 +5,12 @@ $(document).ready(function(){
         var obj = JSON.parse(data);
         obj.forEach(function(element) {
             
-            var dateObj = new Date(element.StartDate);
+            var dateObj = new Date(element.StartDate*1000);
             var month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
             var date = ('0' + dateObj.getDate()).slice(-2);
             var year = dateObj.getFullYear();
             var StartDate = year + '/' + month + '/' + date;
-            dateObj = new Date(element.EndDate);
+            dateObj = new Date(element.EndDate*1000);
             month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
             date = ('0' + dateObj.getDate()).slice(-2);
             year = dateObj.getFullYear();

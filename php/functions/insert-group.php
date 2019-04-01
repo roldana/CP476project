@@ -1,4 +1,6 @@
 <?php
+    date_default_timezone_set('America/Toronto');
+
     session_start();
 
     include_once("../../functions.php");
@@ -13,8 +15,9 @@
         $lng = $_REQUEST['lng'];
     }
 
-    
-    
+    $unix = new DateTime($startDate);
+    $startDate = $unix->getTimeStamp();
+        
     if ($pass1 != $pass2) {
         header("Location: ../create-group.php?err=True");
     }

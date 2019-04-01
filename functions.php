@@ -236,9 +236,10 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash,
     try {
         $db->beginTransaction();
         
-        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, FinalStart, FinalEnd, Lat, Lng, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 7 DAY), DEFAULT, DEFAULT, ?, ?, DEFAULT);";
+        $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, FinalStart, FinalEnd, Lat, Lng, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT, ?, ?, DEFAULT);";
+        $endDate = $startDate + 604800;
         
-        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $startDate, $lat, $lng]))) {
+        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $endDate, $lat, $lng]))) {
             $db->rollBack();
             return False;
         }
