@@ -341,11 +341,9 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
     function createEvent() {
 
         var startDate = new Date(FinalStart*1000)
-        startDate.setFullYear(2019, 3, 1);
         console.log(ISODateString(startDate));
 
         var endDate = new Date(FinalEnd*1000)
-        endDate.setFullYear(2019, 3, 1);
         console.log(ISODateString(endDate));
 
         var event = {
