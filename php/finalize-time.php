@@ -46,7 +46,7 @@
                     <div class="card-body table-responsive" style=" overflow-y: scroll; overflow-x: hidden;">
                         <?php
                               $startDate = new DateTime();
-                              $startDate->setTimeStamp($group['StartDate']);
+                              $startDate->setTimeStamp(strtotime($group['StartDate']));
                               $day = date("l M j", $startDate->getTimeStamp());
                               //echo $day;
                               echo '<table class="table table-bordered" id="table">
@@ -340,16 +340,23 @@ echo '<p id ="i" style="display: none;">' . $i . "</p>";
 
     function createEvent() {
 
+        var startDate = new Date(FinalStart*1000)
+        startDate.setFullYear(2019, 3, 1);
+        console.log(ISODateString(startDate));
+
+        var endDate = new Date(FinalEnd*1000)
+        endDate.setFullYear(2019, 3, 1);
+        console.log(ISODateString(endDate));
+
         var event = {
             'summary': groupName + ' Meeting',
             'description': description,
             'start': {
-                
-                'dateTime': ISODateString(new Date(FinalStart*1000)),
+                'dateTime': ISODateString(startDate),
                 'timeZone': 'EST'
             },
             'end': {
-                'dateTime': ISODateString(new Date(FinalEnd*1000)),
+                'dateTime': ISODateString(endDate),
                 'timeZone': 'EST'
             },
             'attendees': emails,
