@@ -18,6 +18,23 @@ function getDB() {
     return $db;
 }
 
+function retreiveEmailsFromGroup($db, $groupID){
+    $sth = $db->prepare('SELECT UserID FROM groupusers WHERE GroupID = ?;');
+    $sth->execute(array($groupID));
+    $userIDs =  $sth->fetchAll();
+
+    $query = "SELECT Email FROM users WHERE UserID=";
+    for($x=0; $x< sizeof($userIDs)-1; $x++){
+        $query = $query . $userIDs[$x][0] . " OR UserID=";
+    }
+    $query = $query . $userIDs[sizeof($userIDs)-1][0];
+
+    $sth = $db->prepare($query);
+    $sth->execute();
+
+    return $sth->fetchAll();
+}
+
 function retreiveUser($db, $userName) {
     $sth = $db->prepare('SELECT * FROM Users WHERE Username = ?;');
     $sth->execute(array($userName));
@@ -378,4 +395,3 @@ function errorHandler($errorString) {
 }
 
 ?>
-
