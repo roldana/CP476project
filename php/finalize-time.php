@@ -47,7 +47,7 @@
                         <?php
                               $startDate = new DateTime();
                               $startDate->setTimeStamp(strtotime($group['StartDate']));
-                              $day = date("l M j", $startDate->getTimeStamp());
+                              $day = date("M j", $startDate->getTimeStamp());
                               //echo $day;
                               echo '<table class="table table-bordered" id="table">
                                         <thead>
@@ -56,7 +56,7 @@
                               for ($i = 0; $i < 7; $i++) {
                                   echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
                                   $startDate->modify('+1 day');
-                                  $day = date("l M j", $startDate->getTimeStamp());
+                                  $day = date("M j", $startDate->getTimeStamp());
                               }
                               echo         '</tr>
                                         </thead>
