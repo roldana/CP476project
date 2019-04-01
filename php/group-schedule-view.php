@@ -19,6 +19,7 @@
     }
     
     $group = retreiveGroupByID($db, $_GET['GroupID']);
+    $adminUserName = retreiveUserName($db, $group['AdminID'])[0];
 ?>
 <script src="../js/group-schedule-view.js"></script>
 <!-- <script src="../js/calendar-events.js"></script> -->
@@ -39,19 +40,18 @@
         
         <div class="row">         
         
+            <?php if ($group['Status'] == 0) {?>
             <div class="col-xl-7">
                 <div class="card card-inverse bg-light border border-secondary rounded" style="height: 700px;">
                     <div class="card-header">
                         <h4>Select when you are available: </h4>
                     </div>
                     
-                    <?php if ($group['Status'] == 0) {?>
-                    
                     <div class="card-body table-responsive" style="max-height: 700px; overflow-y: scroll; overflow-x: hidden;">
                         <?php
                               $startDate = new DateTime();
                               $startDate->setTimeStamp($group['StartDate']);
-                              $day = date("l", $startDate->getTimeStamp());
+                              $day = date("l M j", $startDate->getTimeStamp());
                               //echo $day;
                               echo '<table class="table table-bordered" id="table">
                                         <thead>
@@ -60,7 +60,7 @@
                               for ($i = 0; $i < 7; $i++) {
                                   echo '<th scope="col" style="width: 12.5%;">'.$day.'</th>';
                                   $startDate->modify('+1 day');
-                                  $day = date("l", $startDate->getTimeStamp());
+                                  $day = date("l M j", $startDate->getTimeStamp());
                               }
                               echo         '</tr>
                                         </thead>
@@ -81,7 +81,6 @@
                         <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-success float-r group-view-btn">Finalize Group Time</a>
                     </div>
                     <?php } ?>
-                    <?php } ?>
                 </div>
             </div>
             
@@ -101,7 +100,33 @@
                     </div>
                 </div>
             </div>
-            
+            <?php } else { ?>
+            <div class="col-xl-9">
+                <div class="card card-inverse border border-secondary rounded"  style="height: 700px;">
+                    <div class="card-header">
+                        <h4>Group Meeting has been finalized: </h4>
+                    </div>
+                    <div class="card-body mx-3" style="overflow: hidden;">
+                        <div>
+                            <p><?php $startDate = new DateTime();
+                                     $startDate->setTimeStamp($group['FinalStart']);
+                                     $day = date("l F jS Y g:iA", $startDate->getTimeStamp());
+                                     echo "From ".$day." to "; 
+                                     $startDate->setTimeStamp($group['FinalEnd']);
+                                     $day = date("l F jS Y g:iA", $startDate->getTimeStamp()); 
+                                     echo $day; ?></p>
+                            <p>If you have not received a google calendar event, it is likely the Group Admin has yet to push it to google. Message the Group Admin (<?php echo $adminUserName; ?>) as soon as possible to fix.</p>
+                            
+                        </div>
+                    </div>
+                    <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
+                    <div class="card-footer">
+                        <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-success float-r group-view-btn">Finalize Group Time</a>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php } ?>
             <div class="col-xl-3">
                 <div class="card card-inverse border border-secondary rounded"  style="height: 700px;">
                     <div class="card-body m-3" id="scroll" style="overflow-y: scroll; overflow-x: hidden;">

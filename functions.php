@@ -298,7 +298,18 @@ function finalizeGroup($db, $GroupID, $start, $end) {
         errorHandler($e->getMessage());
         return false;
     }
-    //send message to all users in group 
+    $sth = $db->prepare('SELECT * FROM GroupUsers JOIN Users WHERE GroupID = ? AND GroupUsers.UserID = Users.UserID;');
+    $sth->execute(array($GroupID));
+    $groupUsers = $sth->fetchAll(PDO::FETCH_ASSOC);
+    
+    $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ?;');
+    $sth->execute(array($GroupID));
+    $group = $sth->fetch();
+    
+    foreach($groupUsers as $user) {
+        sendMessage($db, $user['UserID'], "0", "Group Finalized!", "The group \"".$group['GroupName']."\" has been finalized. Check your google calendar and the group page for details. If you do not see anything in your google calendar, contact your group admin ASAP.");
+    }
+    
     return true;
     
 }
