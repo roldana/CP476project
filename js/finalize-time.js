@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var startTime;
-    var endTime;
+    var startTime = 28800;
+    var endTime = 28800;
     let trigger = false;
     document.addEventListener('mousedown', function(){
         trigger = true;
@@ -92,21 +92,26 @@ $(document).ready(function(){
         var colDone = false;
         var i, j;
         
+        startTime = 28800;
+        
         for (j = 0; j < 7; j++) {
             for (i = 0; i < 32; i++) {
                 cell = $('#'+i+"-"+j);
                 if (colDone && cell.hasClass('bg-success')) {
                     return false;
                 }
-                if (cell.hasClass('bg-success')) {
-                    colFound = true;   
+                if (cell.hasClass('bg-success') && !colFound) {
+                    colFound = true;
+                    startTime = 28800 + (j * 86400) + (i * 1800);
                 }
-                if (colFound && !cell.hasClass('bg-success')) {
+                if (colFound && !cell.hasClass('bg-success') && !colDone) {
                     colDone = true;
+                    endTime = 28800 + (j * 86400) + (i * 1800);
                 }
             }
-            if (colFound) {
-                colDone = true;   
+            if (colFound && !colDone) {
+                colDone = true;
+                endTime = 28800 + (j * 86400) + (32 * 1800);
             }
         }
         
@@ -115,9 +120,24 @@ $(document).ready(function(){
     
     $('#submit-times').click(function () {
         if (!validSheet()) {
-            alert('You can only have one group timing.');   
+            alert('Verify only one meeting time has been selected.');   
         }
-    
+        else {
+            var start = parseInt($('#group-start').val());
+            
+            var begin = (start + startTime);
+            var end = (start + endTime);
+            
+            $.ajax({
+                url:"ajax/finalize.php",
+                method:"POST",
+                data:{GroupID: $('#group-id').val(), start:begin, end:end},
+                dataType:"text",
+                success:function(data) {
+                    window.location.replace("../php/group-schedule-view.php?GroupID="+$('#group-id').val());
+                }
+            });
+        }
     });
     
 });

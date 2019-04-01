@@ -19,10 +19,15 @@
     }
     
     $group = retreiveGroupByID($db, $_GET['GroupID']);
+    
+    if ($group['Status'] == 1) {
+        header("Location: group-schedule-view.php?GroupID=".$_GET['GroupID']);
+    }
 ?>
 <script src="../js/finalize-time.js"></script>
 
 <input class="d-none" id="group-id" value="<?php echo $_GET['GroupID'];?>">
+<input class="d-none" id="group-start" value="<?php echo $group['StartDate'];?>">
 <input class="d-none" id="user-id" value="<?php echo $_SESSION['UserID'];?>">
 
 <div class="content-container">
@@ -46,7 +51,8 @@
                     
                     <div class="card-body table-responsive" style=" overflow-y: scroll; overflow-x: hidden;">
                         <?php
-                              $startDate = new DateTime($group['StartDate']);           
+                              $startDate = new DateTime();
+                              $startDate->setTimeStamp($group['StartDate']);
                               $day = date("l", $startDate->getTimeStamp());
                               //echo $day;
                               echo '<table class="table table-bordered" id="table">

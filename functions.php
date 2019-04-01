@@ -270,6 +270,22 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash,
     return True;
 }
 
+function finalizeGroup($db, $GroupID, $start, $end) {
+    try {
+        $sql = "UPDATE Groups SET FinalStart = ?, FinalEnd = ?, Status = 1 WHERE GroupID = ?;";
+        if (!($db->prepare($sql)->execute([$start, $end, $GroupID]))) {
+            return False;
+        }
+    }
+    catch (Exception $e) {
+        errorHandler($e->getMessage());
+        return false;
+    }
+    //send message to all users in group 
+    return true;
+    
+}
+
 function updateUser($db, $data, $UserName) {
     try {
         if (isset($data['Affiliation'])) {
