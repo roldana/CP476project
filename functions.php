@@ -236,8 +236,13 @@ Function searchGroups($db, $Input) {
 function insertUser($db, $UserName, $Email, $Affiliation, $Pass) {
     try { 
         $sql = "INSERT INTO Users (UserID, UserName, Password, Email, Affiliation) VALUES (DEFAULT, ?, ?, ?, ?);";
+        $sth = $db->prepare($sql);
+        $sth->bindValue(1, $UserName, PDO::PARAM_STR);
+        $sth->bindValue(2, $Pass, PDO::PARAM_STR);
+        $sth->bindValue(3, $Email, PDO::PARAM_STR);
+        $sth->bindValue(4, $Affiliation, PDO::PARAM_STR);
         
-        if (!($db->prepare($sql)->execute([$UserName, $Pass, $Email, $Affiliation]))) {
+        if (!($sth->execute())) {
             return False;
         }
     }
@@ -255,8 +260,18 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash,
         
         $sql = "INSERT INTO Groups (GroupID, AdminID, GroupName, Description, Password, StartDate, EndDate, FinalStart, FinalEnd, Lat, Lng, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT, ?, ?, DEFAULT);";
         $endDate = $startDate + 604800;
+
+        $sth = $db->prepare($sql);
+        $sth->bindValue(1, $adminID, PDO::PARAM_INT);
+        $sth->bindValue(2, $groupName, PDO::PARAM_STR);
+        $sth->bindValue(3, $description, PDO::PARAM_STR);
+        $sth->bindValue(4, $hash, PDO::PARAM_STR);
+        $sth->bindValue(5, $startDate, PDO::PARAM_INT);
+        $sth->bindValue(6, $endDate, PDO::PARAM_INT);
+        $sth->bindValue(7, $lat, PDO::PARAM_STR);
+        $sth->bindValue(8, $lng, PDO::PARAM_STR);
         
-        if (!($db->prepare($sql)->execute([$adminID, $groupName, $description, $hash, $startDate, $endDate, $lat, $lng]))) {
+        if (!($sth->execute())) {
             $db->rollBack();
             return False;
         }
