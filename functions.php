@@ -229,7 +229,9 @@ function removeGroup($db, $GroupID) {
 
 Function searchGroups($db, $Input) {
     $sth = $db->prepare("SELECT * FROM Groups JOIN Users ON Groups.AdminID=Users.UserID WHERE GroupName LIKE concat( '%', ?, '%') or UserName LIKE concat( '%', ?, '%');");
-    $sth->execute(array($Input, $Input));
+    $sth->bindValue(1, $Input, PDO::PARAM_STR);
+    $sth->bindValue(2, $Input, PDO::PARAM_STR);
+    $sth->execute();
     return $sth->fetchAll();
 }
 
@@ -305,7 +307,11 @@ function insertGroup($db, $groupName, $adminID, $description, $startDate, $hash,
 function finalizeGroup($db, $GroupID, $start, $end) {
     try {
         $sql = "UPDATE Groups SET FinalStart = ?, FinalEnd = ?, Status = 1 WHERE GroupID = ?;";
-        if (!($db->prepare($sql)->execute([$start, $end, $GroupID]))) {
+        $sth = $db->prepare($sql);
+        $sth->bindValue(1, $start, PDO::PARAM_INT);
+        $sth->bindValue(2, $end, PDO::PARAM_INT);
+        $sth->bindValue(3, $GroupID, PDO::PARAM_INT);
+        if (!($sth->execute())) {
             return False;
         }
     }
@@ -314,11 +320,13 @@ function finalizeGroup($db, $GroupID, $start, $end) {
         return false;
     }
     $sth = $db->prepare('SELECT * FROM GroupUsers JOIN Users WHERE GroupID = ? AND GroupUsers.UserID = Users.UserID;');
-    $sth->execute(array($GroupID));
+    $sth->bindValue(1, $GroupID, PDO::PARAM_INT);
+    $sth->execute();
     $groupUsers = $sth->fetchAll(PDO::FETCH_ASSOC);
     
     $sth = $db->prepare('SELECT * FROM Groups WHERE GroupID = ?;');
-    $sth->execute(array($GroupID));
+    $sth->bindValue(1, $GroupID, PDO::PARAM_INT);
+    $sth->execute();
     $group = $sth->fetch();
     
     foreach($groupUsers as $user) {
@@ -333,13 +341,19 @@ function updateUser($db, $data, $UserName) {
     try {
         if (isset($data['Affiliation'])) {
             $sql = "UPDATE Users SET Affiliation = ? WHERE UserID = ?;";
-            if (!($db->prepare($sql)->execute([$data['Affiliation'], $UserName]))) {
+            $sth = $db->prepare($sql);
+            $sth->bindValue(1, $data['Affiliation'], PDO::PARAM_STR);
+            $sth->bindValue(2, $UserName, PDO::PARAM_STR);
+            if (!($sth>execute())) {
                 return False;
             }
            $_SESSION['Affiliation'] = $data['Affiliation'];
         } elseif (isset($data['Email'])){
             $sql = "UPDATE Users SET Email = ? WHERE UserID = ?;";
-            if (!($db->prepare($sql)->execute([$data['Email'], $UserName]))) {
+            $sth = $db->prepare($sql);
+            $sth->bindValue(1, $data['Email'], PDO::PARAM_STR);
+            $sth->bindValue(2, $UserName, PDO::PARAM_STR);
+            if (!($sth>execute())) {
                 return False;
             }
             $_SESSION['Email'] = $data['Email'];
