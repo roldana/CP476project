@@ -50,7 +50,7 @@ $(document).ready(function(){
                 str = str + "</div>";
                 str = str + "<div class=\"col-md-2 ml-auto\">";
                 str = str + "<div class=\"float-right\">";
-                str = str + "<button type=\"button\" class=\"btn m-1 btn-success btn-lg float-right join\" toggle=\"modal\" data-target=\"#"+element.GroupID+"\">Join Group</button></div>";
+                str = str + "<button type=\"button\" class=\"btn m-1 btn-primary btn-lg float-right join\" toggle=\"modal\" data-target=\"#"+element.GroupID+"\">Join Group</button></div>";
                 str = str + "</div></div>";
                 
                 //modal
@@ -58,7 +58,7 @@ $(document).ready(function(){
                 //modal content
                 str = str + "<div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title\">"+element.GroupName+"</h4><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button></div>";
                 str = str + "<div class=\"modal-body\"><p>Please enter the password: </p>";
-                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control modal-in\" placeholder=\"password\"><div class=\"input-group-btn input-group-append\"><button class=\"btn btn-outline-success modal-submit\" type=\"button\">Join</button></div></div></div>";
+                str = str + "<div class=\"input-group col\"><input type=\"password\" class=\"form-control modal-in\" placeholder=\"password\"><div class=\"input-group-btn input-group-append\"><button class=\"btn btn-outline-primary modal-submit\" type=\"button\">Join</button></div></div></div>";
                 str = str + "<div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button></div>";
                 str= str + "</div></div></div>";
                 str=str+"</li>";

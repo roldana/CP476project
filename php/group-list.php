@@ -14,7 +14,7 @@
                 
                 <div class="row">
                     <div class="col">
-                        <a class="btn btn-success float-left" href="create-group.php" role="button">Create new group</a>
+                        <a class="btn btn-primary float-left" href="create-group.php" role="button">Create new group</a>
                     </div>
                     <div class="input-group col">
                         <input type="text" class="form-control" id="input-search" placeholder="search for a group">

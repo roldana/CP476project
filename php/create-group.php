@@ -63,7 +63,7 @@
                 <input class="input-box d-none" type="text" id="lat" name="lat" id="lat">
                 <input class="input-box d-none" type="text" id="lng" name="lng" id="lng">
                 
-                <button class="btn btn-outline-success float-r" type="submit">Create Group</button>
+                <button class="btn btn-outline-primary float-r" type="submit">Create Group</button>
 
             </form>
 

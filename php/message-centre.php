@@ -84,7 +84,7 @@
 
             </div>
             <div class="modal-footer d-flex justify-content-right">
-                <button id="submit-message" class="btn btn-success">Send</button>
+                <button id="submit-message" class="btn btn-primary">Send</button>
             </div>
         </div>
     </div>

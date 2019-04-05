@@ -73,8 +73,8 @@
                           ?>
                     </div>
                     <div class="card-footer">
-                        <a href="group-schedule-view.php?GroupID=<?php echo $_GET['GroupID']; ?>" class="btn btn-success btn-lg float-r group-view-btn">Return</a>
-                        <button id="submit-times" type="button" class="btn btn-success btn-lg float-r group-view-btn">Submit Times</button>
+                        <a href="group-schedule-view.php?GroupID=<?php echo $_GET['GroupID']; ?>" class="btn btn-primary btn-lg float-r group-view-btn">Return</a>
+                        <button id="submit-times" type="button" class="btn btn-primary btn-lg float-r group-view-btn">Submit Times</button>
                     </div>
 
                 </div>

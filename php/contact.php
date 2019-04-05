@@ -36,7 +36,7 @@
                 <div class="wrap-input">
                     <textarea class="input-area" type="text" name="body" placeholder="Message Body" rows="10"></textarea>
                 </div>
-                    <button type="submit" class="btn btn-outline-success float-r">Send Message</button>
+                    <button type="submit" class="btn btn-primary float-r">Send Message</button>
                 </div>
             </form>
             <?php } else { ?>

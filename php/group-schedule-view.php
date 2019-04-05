@@ -78,7 +78,7 @@
                     </div>
                     <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                     <div class="card-footer">
-                        <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-success float-r group-view-btn">Finalize Group Time</a>
+                        <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-primary float-r group-view-btn">Finalize Group Time</a>
                     </div>
                     <?php } ?>
                 </div>
@@ -121,7 +121,7 @@
                     </div>
                     <?php if ($_SESSION['UserID'] == $group['AdminID']) { ?>
                     <div class="card-footer">
-                        <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-success float-r group-view-btn">Finalize Group Time</a>
+                        <a href="finalize-time.php?GroupID=<?php echo $_GET['GroupID']; ?>" target="_blank" class="btn btn-primary float-r group-view-btn">Finalize Group Time</a>
                     </div>
                     <?php } ?>
                 </div>
@@ -138,7 +138,7 @@
                         <div class="input-group">
                             <input id="text-content" type="text" class="form-control input-sm" placeholder="Type your message here...">
                             <div class="input-group-btn input-group-append">
-                                <button class="btn btn-success" id="send-chat" type="submit">Send</button>
+                                <button class="btn btn-primary" id="send-chat" type="submit">Send</button>
                             </div>
                         </div>
                     </div>
