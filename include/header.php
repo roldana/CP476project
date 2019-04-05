@@ -27,7 +27,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
 <html lang="en">
 <head>
     <title><?php
-    if ((basename($_SERVER['PHP_SELF']) == "index.php")) {echo "Index";}
+    if ((basename($_SERVER['PHP_SELF']) == "index.php")) {echo "Login";}
     else if ((basename($_SERVER['PHP_SELF']) == "sign-up.php")) {echo "Sign Up";}
     else if ((basename($_SERVER['PHP_SELF']) == "group-list.php")) {echo "Group List";}
     else if ((basename($_SERVER['PHP_SELF']) == "group-schedule-view.php")) {echo "Group Schedule View";}
@@ -37,6 +37,7 @@ if ((basename($_SERVER['PHP_SELF']) == "index.php")) {
     else if ((basename($_SERVER['PHP_SELF']) == "account.php")) {echo "Account";}
     else if ((basename($_SERVER['PHP_SELF']) == "contact.php")) {echo "Contact";}
     else if ((basename($_SERVER['PHP_SELF']) == "info.php")) {echo "Info";}
+    else if ((basename($_SERVER['PHP_SELF']) == "finalize-time.php")) {echo "Finalize Time";}
     else {echo "Page";}
     ?>
     </title>
