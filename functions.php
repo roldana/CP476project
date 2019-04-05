@@ -114,8 +114,14 @@ function sendMessage($db, $ToID, $FromID, $Subject, $MsgBody) {
     if ($FromID == "") {$FromID = "0";}
     try { 
         $sql = "INSERT INTO Messages (MsgID, ToID, FromID, MsgDate, Subject, MsgBody, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT);";
+        $sth = $db->prepare($sql);
+        $sth->bindValue(1, $ToID, PDO::PARAM_INT);
+        $sth->bindValue(2, $FromID, PDO::PARAM_INT);
+        $sth->bindValue(3, time(), PDO::PARAM_INT);
+        $sth->bindValue(4, $Subject, PDO::PARAM_STR);
+        $sth->bindValue(5, $MsgBody, PDO::PARAM_STR);
         
-        if (!($db->prepare($sql)->execute([$ToID, $FromID, time(), $Subject, $MsgBody]))) {
+        if (!($sth->execute())) {
             return False;
         }
     }
@@ -147,15 +153,21 @@ function sendChatMessage($db, $GroupID, $UserID, $MsgBody) {
     try {
         $db->beginTransaction();
         $sql = "Update ChatIdentifier SET MsgTotal = MsgTotal + 1 WHERE GroupID = ?;";
-        
-        if (!($db->prepare($sql)->execute([$GroupID]))) {
+        $sth = $db->prepare($sql);
+        $sth->bindValue(1, $GroupID, PDO::PARAM_INT);
+        if (!($sth->execute())) {
             $db->rollback();
             return False;
         }
         
         $sql = "INSERT INTO ChatMessages (GroupID, UserID, Content, MsgDate) VALUES (?, ?, ?, ?);";
+        $sth = $db->prepare($sql);
+        $sth->bindValue(1, $GroupID, PDO::PARAM_INT);
+        $sth->bindValue(2, $UserID, PDO::PARAM_INT);
+        $sth->bindValue(3, $MsgBody, PDO::PARAM_STR);
+        $sth->bindValue(4, time(), PDO::PARAM_INT);
         
-        if (!($db->prepare($sql)->execute([$GroupID, $UserID, $MsgBody, time()]))) {
+        if (!($sth->execute())) {
             $db->rollback();
             return False;
         }
