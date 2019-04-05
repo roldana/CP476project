@@ -356,7 +356,7 @@ function updateUser($db, $data, $UserName) {
             $sth = $db->prepare($sql);
             $sth->bindValue(1, $data['Affiliation'], PDO::PARAM_STR);
             $sth->bindValue(2, $UserName, PDO::PARAM_STR);
-            if (!($sth>execute())) {
+            if (!($sth->execute())) {
                 return False;
             }
            $_SESSION['Affiliation'] = $data['Affiliation'];
@@ -365,7 +365,7 @@ function updateUser($db, $data, $UserName) {
             $sth = $db->prepare($sql);
             $sth->bindValue(1, $data['Email'], PDO::PARAM_STR);
             $sth->bindValue(2, $UserName, PDO::PARAM_STR);
-            if (!($sth>execute())) {
+            if (!($sth->execute())) {
                 return False;
             }
             $_SESSION['Email'] = $data['Email'];
