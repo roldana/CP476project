@@ -30,7 +30,7 @@
                                     <div class="col-md-10">
                                         <p>
                                             <strong>'.$message['UserName'].'</strong></br>
-                                            <small>'.date("l jS \of F Y h:i ", $message["MsgDate"]).'</small>
+                                            <small>'.date("l F jS h:i A", $message["MsgDate"]).'</small>
                                         </p>
                                         <p>'.$message['Content'].'
                                         </p>
